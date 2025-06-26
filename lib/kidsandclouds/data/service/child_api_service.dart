@@ -12,24 +12,8 @@ abstract class ChildApiService {
 
   // Corregido: La API devuelve un objeto con "results", no directamente una lista
   @GET('/api')
-  Future<ChildrenResponse> getChildren({
+  Future<List<Child>> getChildren({
     @Query('results') int results = 10,
   });
 }
 
-// Clase para mapear la respuesta completa de la API
-@JsonSerializable()
-class ChildrenResponse {
-  final List<Child> results;
-  final Map<String, dynamic> info;
-
-  const ChildrenResponse({
-    required this.results,
-    required this.info,
-  });
-
-  factory ChildrenResponse.fromJson(Map<String, dynamic> json) => 
-      _$ChildrenResponseFromJson(json);
-
-  Map<String, dynamic> toJson() => _$ChildrenResponseToJson(this);
-}

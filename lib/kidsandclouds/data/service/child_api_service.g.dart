@@ -3,25 +3,6 @@
 part of 'child_api_service.dart';
 
 // **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-ChildrenResponse _$ChildrenResponseFromJson(Map<String, dynamic> json) =>
-    ChildrenResponse(
-      results:
-          (json['results'] as List<dynamic>)
-              .map((e) => Child.fromJson(e as Map<String, dynamic>))
-              .toList(),
-      info: json['info'] as Map<String, dynamic>,
-    );
-
-Map<String, dynamic> _$ChildrenResponseToJson(ChildrenResponse instance) =>
-    <String, dynamic>{
-      'results': instance.results.map((e) => e.toJson()).toList(),
-      'info': instance.info,
-    };
-
-// **************************************************************************
 // RetrofitGenerator
 // **************************************************************************
 
@@ -39,12 +20,12 @@ class _ChildApiService implements ChildApiService {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<ChildrenResponse> getChildren({int results = 10}) async {
+  Future<List<Child>> getChildren({int results = 10}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'results': results};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<ChildrenResponse>(
+    final _options = _setStreamType<List<Child>>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -54,10 +35,13 @@ class _ChildApiService implements ChildApiService {
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
-    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late ChildrenResponse _value;
+    final _result = await _dio.fetch<List<dynamic>>(_options);
+    late List<Child> _value;
     try {
-      _value = ChildrenResponse.fromJson(_result.data!);
+      _value =
+          _result.data!
+              .map((dynamic i) => Child.fromJson(i as Map<String, dynamic>))
+              .toList();
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
