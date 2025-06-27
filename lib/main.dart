@@ -1,7 +1,10 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:pruebakidsandclouds/generated/l10n.dart';
+import 'package:pruebakidsandclouds/kidsandclouds/presentation/pages/home_screen.dart';
 
 // Router simple
 final GoRouter _router = GoRouter(
@@ -9,7 +12,7 @@ final GoRouter _router = GoRouter(
     GoRoute(
       path: '/',
       builder: (BuildContext context, GoRouterState state) {
-        return const MyHomePage();
+        return const HomeScreen();
       },
     ),
   ],
@@ -30,48 +33,20 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
+
+      // IDIOMAS Y LOCALILZACIÓN
+      localizationsDelegates: const [
+        S.delegate,                               
+        GlobalMaterialLocalizations.delegate,    
+        GlobalWidgetsLocalizations.delegate,     
+        GlobalCupertinoLocalizations.delegate,   
+      ],
+      supportedLocales: S.delegate.supportedLocales, 
+      
+
       routerConfig: _router,
       debugShowCheckedModeBanner: false,
     );
   }
 }
 
-class MyHomePage extends ConsumerWidget {
-  const MyHomePage({super.key});
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text('Kids & Clouds'),
-      ),
-      body: const Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              '🎉 ¡Importaciones Exitosas!',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 16),
-            Text(
-              '✅ flutter_riverpod: Funcionando',
-              style: TextStyle(fontSize: 16, color: Colors.green),
-            ),
-            Text(
-              '✅ go_router: Funcionando',
-              style: TextStyle(fontSize: 16, color: Colors.green),
-            ),
-            SizedBox(height: 16),
-            Text(
-              'Ahora puedes usar ProviderScope y GoRouter sin problemas',
-              style: TextStyle(fontSize: 14),
-              textAlign: TextAlign.center,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}

@@ -18,7 +18,7 @@ class ChildrenNotifier extends AsyncNotifier<List<Child>> {
     return await ref.read(childUseCaseProvider).getChildren();
   }
 
-  Future<void> refreshChildren() async {
+  Future<void> fetchChildren() async {
     state = const AsyncValue.loading();
     try {
       final children = await _childUsecase.getChildren();

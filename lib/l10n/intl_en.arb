@@ -1,0 +1,26 @@
+{
+  "@@locale": "en",
+  "appTitle": "Kids & Clouds",
+"appSubtitle": "Application for managing children",
+
+"confirm": "Confirm",
+  "cancel": "Cancel",
+  "continueText": "Continue",
+
+  "welcome": "Welcome",
+  "childrenList": "Children List",
+  "childDetails": "Child Details",
+  "loading": "Loading...",
+  "error": "An error occurred",
+  "noData": "No data available",
+  "refresh": "Refresh",
+  "name": "Name",
+  "email": "Email",
+  "phone": "Phone",
+  "city": "City",
+  "country": "Country",
+
+  "splash1Title": "Welcome to Kids & Clouds",
+  "splash2Title": "Manage your children's data",
+  "splash3Title": "Enjoy a safe and fun environment for your kids"
+}

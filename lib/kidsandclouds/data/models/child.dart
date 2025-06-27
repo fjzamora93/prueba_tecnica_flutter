@@ -21,22 +21,25 @@ class Child {
   final Picture picture;
 
   const Child({
-    required this.gender,
-    required this.email,
-    required this.phone,
-    required this.cell,
-    required this.nat,
-    required this.name,
-    required this.location,
-    required this.login,
-    required this.dob,
-    required this.id,
-    required this.picture,
+    this.gender = '',
+    this.email = '',
+    this.phone = '',
+    this.cell = '',
+    this.nat = '',
+    this.name = const {},
+    this.location = const {},
+    this.login = const {},
+    this.dob = const {},
+    this.id = const {},
+    this.picture = const Picture(large: '', medium: '', thumbnail: ''),
   });
 
   factory Child.fromJson(Map<String, dynamic> json) => _$ChildFromJson(json);
 
   Map<String, dynamic> toJson() => _$ChildToJson(this);
+
+  // Constructor vacío para inicializar con valores por defecto
+  static Child empty() => const Child();
   
   // Métodos helper para acceder a datos anidados fácilmente
   String get firstName => name['first'] ?? '';

@@ -9,6 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations: 
+    sdk: flutter
   cupertino_icons: ^1.0.8
   
   # Estado
@@ -24,6 +26,8 @@ dependencies:
   
   # UI
   google_fonts: ^6.2.1
+  intl: ^0.19.0
+
   
   # Local storage y seguridad
   shared_preferences: ^2.2.2
@@ -44,3 +48,6 @@ flutter:
   assets:
     - assets/img/
     - assets/icons/
+
+flutter_intl:
+  enabled: true

@@ -12,4 +12,8 @@ class ChildUsecase {
     return await _childRepository.getChildren(results: results);
   }
 
+  Future<Child> getChildById(String id) async {
+    return await _childRepository.getChildById(id);
+  }
+
 }
