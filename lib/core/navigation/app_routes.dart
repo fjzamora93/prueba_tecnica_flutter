@@ -8,7 +8,7 @@ abstract final class AppRoutes{
 
   // Features
   static const String dailyJournal = '/daily-journal';
-  static const String childrenList = '/childreen-list';
+  static const String childrenList = '/children-list';
   static const String childDetail  = '/child-detail';
 
 }

@@ -1,0 +1,40 @@
+{
+  "@@locale": "es",
+  "appTitle": "Kids&Clouds",
+  "appSubtitle": "Aplicación de gestión de niños",
+  "welcome": "Bienvenido",
+  "childrenList": "Lista de Niños",
+    "childDetails": "Detalles del Niño",
+      "continueText": "Continuar",
+
+        "home": "Home",
+  "diary": "Agenda Diaria",
+  "list": "Listado",
+  "profile": "PErfil",
+
+  "login": "Login",
+  "logout": "Logout",
+
+"confirm": "Confirmar",
+  "cancel": "Cancelar",
+
+  "loading": "Cargando...",
+  "error": "Ocurrió un error",
+  "noData": "No hay datos disponibles",
+  "refresh": "Actualizar",
+  "name": "Nombre",
+  "email": "Correo",
+  "phone": "Teléfono",
+  "city": "Ciudad",
+  "country": "País",
+
+  "splash1Title": "Bienvenido Kids & Clouds",
+  "splash2Title": "Gestiona los datos de tus hijos",
+  "splash3Title": "Disfruta de un entorno seguro y divertido para tus hijos",
+  "splash1Subtitle": "Los datos de tus hijos están seguros con nosotros",
+  "splash2Subtitle": "Fácil gestión y seguimiento de las actividades de tus hijos",
+  "splash3Subtitle": "Un espacio seguro y divertido para que tus hijos aprendan y jueguen",
+
+  "youHave": "Usted tiene",
+  "children": "niños"
+}
