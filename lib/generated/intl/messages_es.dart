@@ -34,18 +34,33 @@ class MessageLookup extends MessageLookupByLibrary {
     "confirm": MessageLookupByLibrary.simpleMessage("Confirmar"),
     "continueText": MessageLookupByLibrary.simpleMessage("Continuar"),
     "country": MessageLookupByLibrary.simpleMessage("País"),
+    "diary": MessageLookupByLibrary.simpleMessage("Agenda Diaria"),
     "email": MessageLookupByLibrary.simpleMessage("Correo"),
     "error": MessageLookupByLibrary.simpleMessage("Ocurrió un error"),
+    "home": MessageLookupByLibrary.simpleMessage("Home"),
+    "list": MessageLookupByLibrary.simpleMessage("Listado"),
     "loading": MessageLookupByLibrary.simpleMessage("Cargando..."),
+    "login": MessageLookupByLibrary.simpleMessage("Login"),
+    "logout": MessageLookupByLibrary.simpleMessage("Logout"),
     "name": MessageLookupByLibrary.simpleMessage("Nombre"),
     "noData": MessageLookupByLibrary.simpleMessage("No hay datos disponibles"),
     "phone": MessageLookupByLibrary.simpleMessage("Teléfono"),
+    "profile": MessageLookupByLibrary.simpleMessage("PErfil"),
     "refresh": MessageLookupByLibrary.simpleMessage("Actualizar"),
+    "splash1Subtitle": MessageLookupByLibrary.simpleMessage(
+      "Los datos de tus hijos están seguros con nosotros",
+    ),
     "splash1Title": MessageLookupByLibrary.simpleMessage(
       "Bienvenido Kids & Clouds",
     ),
+    "splash2Subtitle": MessageLookupByLibrary.simpleMessage(
+      "Fácil gestión y seguimiento de las actividades de tus hijos",
+    ),
     "splash2Title": MessageLookupByLibrary.simpleMessage(
       "Gestiona los datos de tus hijos",
+    ),
+    "splash3Subtitle": MessageLookupByLibrary.simpleMessage(
+      "Un espacio seguro y divertido para que tus hijos aprendan y jueguen",
     ),
     "splash3Title": MessageLookupByLibrary.simpleMessage(
       "Disfruta de un entorno seguro y divertido para tus hijos",

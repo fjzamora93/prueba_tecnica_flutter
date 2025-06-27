@@ -45,8 +45,8 @@ class _ChildDetailScreen extends ConsumerState<ChildDetailScreen> {
 
     return PrimaryScaffold(
       appBar: AppBar(
-        title: Text(S.of(context).appTitle),
-        backgroundColor: Theme.of(context).primaryColor,
+        title: Text(S.of(context).childDetails),
+        backgroundColor: AppColors.primary,
         foregroundColor: AppColors.white,
       ),
       children: [

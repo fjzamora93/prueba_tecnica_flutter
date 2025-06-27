@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pruebakidsandclouds/core/navigation/app_routes.dart';
 import 'package:pruebakidsandclouds/core/theme/app_colors.dart';
+import 'package:pruebakidsandclouds/generated/l10n.dart';
 
 class BottomNavBar extends StatelessWidget {
   const BottomNavBar({super.key});
@@ -11,23 +12,28 @@ class BottomNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return BottomNavigationBar(
       currentIndex: _getCurrentIndex(context),
-      
-      items: const [
+      backgroundColor: AppColors.backgroundTertiary,
+      type: BottomNavigationBarType.fixed,
+      iconSize: 32,
+      items:  [
         BottomNavigationBarItem(
           icon: Icon(Icons.home_outlined),
-          label: 'Home',
+          label: S.of(context).home, 
+
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.book),
-          label: 'Diario',
+          label: S.of(context).diary, 
+
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.search),
-          label: 'Niños',
+          label: S.of(context).list, 
+
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.person_outline),
-          label: 'Perfil',
+          label: S.of(context).profile, 
         ),
         
       ],
@@ -49,7 +55,7 @@ class BottomNavBar extends StatelessWidget {
         }
       },
       selectedItemColor: AppColors.primary,
-      unselectedItemColor: AppColors.borderFilled,
+      unselectedItemColor: AppColors.white,
     );
   }
 

@@ -7,6 +7,14 @@
   "cancel": "Cancel",
   "continueText": "Continue",
 
+  "home": "Home",
+  "diary": "Daily Journal",
+  "list": "List",
+  "profile": "Profile",
+
+  "login": "Login",
+  "logout": "Logout",
+
   "welcome": "Welcome",
   "childrenList": "Children List",
   "childDetails": "Child Details",
@@ -23,6 +31,9 @@
   "splash1Title": "Welcome to Kids & Clouds",
   "splash2Title": "Manage your children's data",
   "splash3Title": "Enjoy a safe and fun environment for your kids",
+  "splash1Subtitle": "Your children's data is safe with us",
+  "splash2Subtitle": "Easily manage and track your children's activities",
+  "splash3Subtitle": "A secure and fun space for your children to learn and play",
 
   "youHave": "You have",
   "children": "children"

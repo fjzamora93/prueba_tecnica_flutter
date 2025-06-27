@@ -19,20 +19,27 @@ class _DailyJournalScreen extends ConsumerState<DailyJournalScreen> {
   Widget build(BuildContext context) {
     return PrimaryScaffold(
       appBar: AppBar(
-        title:  Text(S.of(context).appTitle),
-        backgroundColor: Theme.of(context).primaryColor,
+        title:  Text(S.of(context).diary),
+        backgroundColor: AppColors.primary,
         foregroundColor: AppColors.white,
       ),
       children: [
-            Text(
-              S.of(context).welcome,
-              style: AppTextStyles.heading2
-            ),
+           
 
             SizedBox(height: 16),
 
             Text(
-              'Texto de la sección de muestra.',
+              'Menú horizontal de categorías (scrollable).',
+              style: TextStyle(fontSize: 16),
+            ),
+
+             Text(
+              'Alimentación, Siestas, Actividades, Deposiciones, Observaciones…',
+              style: TextStyle(fontSize: 16),
+            ),
+
+            Text(
+              'Al seleccionar una categoría, mostrar solo los eventos correspondientes',
               style: TextStyle(fontSize: 16),
             ),
 

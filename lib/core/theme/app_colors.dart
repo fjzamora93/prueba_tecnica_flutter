@@ -24,8 +24,8 @@ class AppColors {
   // COLORES DE FONDO
   static const Color backgroundPrimary = Color(0xFFF8F8F8); // Gris muy claro
   static const Color backgroundSecondary = Color(0xFFFAFAFA); // Gris claro
-  static const Color backgroundTertiary = Color(0xFFF6F6F6); // Gris medio
-  static const Color backgroundInput = Color(0xFFFFFFFF); // Blanco
+  static const Color backgroundTertiary = Color.fromARGB(255, 247, 204, 204); // Gris medio
+  static const Color backgroundInput = Color.fromARGB(255, 247, 243, 243); // Blanco
 
   // COLORES DE BORDE
   static const Color borderFilled = Color(0xFF909090);

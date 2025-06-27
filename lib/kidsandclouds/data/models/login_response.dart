@@ -1,28 +1,40 @@
 
+class LoginResponse {
+  final int id;
+  final String username;
+  final String email;
+  final String firstName;
+  final String lastName;
+  final String gender;
+  final String image;
+  final String accessToken;
+  final String refreshToken;
 
-// import 'package:json_annotation/json_annotation.dart';
+  LoginResponse({
+    required this.id,
+    required this.username,
+    required this.email,
+    required this.firstName,
+    required this.lastName,
+    required this.gender,
+    required this.image,
+    required this.accessToken,
+    required this.refreshToken,
+  });
 
-// @JsonSerializable()
-// class Login {
-//   final String uuid;
-//   final String username;
-//   final String password;
-//   final String salt;
-//   final String md5;
-//   final String sha1;
-//   final String sha256;
+  factory LoginResponse.fromJson(Map<String, dynamic> json) {
+    return LoginResponse(
+      id: json['id'],
+      username: json['username'],
+      email: json['email'],
+      firstName: json['firstName'],
+      lastName: json['lastName'],
+      gender: json['gender'],
+      image: json['image'],
+      accessToken: json['accessToken'],
+      refreshToken: json['refreshToken'],
+    );
+  }
 
-//   const Login({
-//     required this.uuid,
-//     required this.username,
-//     required this.password,
-//     required this.salt,
-//     required this.md5,
-//     required this.sha1,
-//     required this.sha256,
-//   });
 
-//   factory Login.fromJson(Map<String, dynamic> json) => _$LoginFromJson(json);
-
-//   Map<String, dynamic> toJson() => _$LoginToJson(this);
-// }
+}

@@ -84,6 +84,36 @@ class S {
     return Intl.message('Continue', name: 'continueText', desc: '', args: []);
   }
 
+  /// `Home`
+  String get home {
+    return Intl.message('Home', name: 'home', desc: '', args: []);
+  }
+
+  /// `Daily Journal`
+  String get diary {
+    return Intl.message('Daily Journal', name: 'diary', desc: '', args: []);
+  }
+
+  /// `List`
+  String get list {
+    return Intl.message('List', name: 'list', desc: '', args: []);
+  }
+
+  /// `Profile`
+  String get profile {
+    return Intl.message('Profile', name: 'profile', desc: '', args: []);
+  }
+
+  /// `Login`
+  String get login {
+    return Intl.message('Login', name: 'login', desc: '', args: []);
+  }
+
+  /// `Logout`
+  String get logout {
+    return Intl.message('Logout', name: 'logout', desc: '', args: []);
+  }
+
   /// `Welcome`
   String get welcome {
     return Intl.message('Welcome', name: 'welcome', desc: '', args: []);
@@ -184,6 +214,36 @@ class S {
     return Intl.message(
       'Enjoy a safe and fun environment for your kids',
       name: 'splash3Title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your children's data is safe with us`
+  String get splash1Subtitle {
+    return Intl.message(
+      'Your children\'s data is safe with us',
+      name: 'splash1Subtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Easily manage and track your children's activities`
+  String get splash2Subtitle {
+    return Intl.message(
+      'Easily manage and track your children\'s activities',
+      name: 'splash2Subtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `A secure and fun space for your children to learn and play`
+  String get splash3Subtitle {
+    return Intl.message(
+      'A secure and fun space for your children to learn and play',
+      name: 'splash3Subtitle',
       desc: '',
       args: [],
     );

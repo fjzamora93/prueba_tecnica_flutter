@@ -20,7 +20,7 @@ class _EventScreen extends ConsumerState<EventScreen> {
     return PrimaryScaffold(
       appBar: AppBar(
         title:  Text(S.of(context).appTitle),
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: AppColors.primary,
         foregroundColor: AppColors.white,
       ),
       children: [

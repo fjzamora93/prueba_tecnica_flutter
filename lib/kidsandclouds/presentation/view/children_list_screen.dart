@@ -33,8 +33,8 @@ class _ChildrenListScreen extends ConsumerState<ChildrenListScreen> {
 
     return PrimaryScaffold(
       appBar: AppBar(
-        title:  Text(S.of(context).appTitle),
-        backgroundColor: Theme.of(context).primaryColor,
+        title:  Text(S.of(context).childrenList),
+        backgroundColor: AppColors.primary,
         foregroundColor: AppColors.white,
       ),
       children: [
@@ -48,10 +48,7 @@ class _ChildrenListScreen extends ConsumerState<ChildrenListScreen> {
             data: (childrenList) => Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  S.of(context).childrenList,
-                  style: AppTextStyles.heading2,
-                ),
+         
                 const SizedBox(height: 16),
                 Text(
                   '${S.of(context).youHave} ${childrenList.length} ${S.of(context).children} ',
@@ -61,7 +58,7 @@ class _ChildrenListScreen extends ConsumerState<ChildrenListScreen> {
                 
                 // LISTA DE CHILDREN CARDS
                 SizedBox(
-                  height: 400, // O la altura que necesites
+                  height: 400, 
                   child: ListView.builder(
                     itemCount: childrenList.length,
                     itemBuilder: (context, index) {
