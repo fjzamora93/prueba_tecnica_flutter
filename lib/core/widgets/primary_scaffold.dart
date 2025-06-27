@@ -1,7 +1,7 @@
 /// PrimaryScaffold: used for screens with BottomNavBar and primary styling.
 library;
-import 'package:cari/core/presentation/widgets/bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:pruebakidsandclouds/core/widgets/bottom_nav_bar.dart';
 
 
 class PrimaryScaffold extends StatelessWidget {

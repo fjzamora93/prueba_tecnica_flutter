@@ -13,11 +13,22 @@ class ChildRepository {
   Future<List<Child>> getChildren({int results = 10}) async {
       try {
         final response = await _apiService.getChildren(results: results);
-        return response;
+        final List<Child> childrenList = response.results;
+        return childrenList;
       } catch (e) {
         Log.e('Error fetching children: $e');
-        return []; 
+        throw Exception('Failed to fetch children $e');
       }
+  }
+
+  Future<Child> getChildById(String id) async {
+    try {
+      final response = await _apiService.getChildById(id);
+      return response;
+    } catch (e) {
+      Log.e('Error fetching child by ID: $e');
+      throw Exception('Failed to fetch child by ID');
+    }
   }
   
 }

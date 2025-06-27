@@ -1,12 +1,13 @@
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
-import 'package:pruebakidsandclouds/core/theme/app_colors.dart';
+import 'package:go_router/go_router.dart';
+import 'package:pruebakidsandclouds/core/navigation/app_routes.dart';
 import 'package:pruebakidsandclouds/core/theme/theme.dart';
 import 'package:pruebakidsandclouds/generated/l10n.dart';
-import 'package:pruebakidsandclouds/kidsandclouds/presentation/components/primary_button.dart';
-import 'package:pruebakidsandclouds/kidsandclouds/presentation/components/primary_scaffold.dart';
+import 'package:pruebakidsandclouds/core/widgets/primary_scaffold.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/presentation/providers/children_list_provider.dart';
+import 'package:pruebakidsandclouds/kidsandclouds/presentation/widgets/child_summary_card.dart';
 
 class ChildrenListScreen extends ConsumerStatefulWidget {
   const ChildrenListScreen({super.key});
@@ -43,8 +44,8 @@ class _ChildrenListScreen extends ConsumerState<ChildrenListScreen> {
               padding: const EdgeInsets.all(8),
               child: Text(S.of(context).error),
             ),
-            
-            data: (children)=> Column(
+
+            data: (childrenList) => Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
@@ -52,18 +53,31 @@ class _ChildrenListScreen extends ConsumerState<ChildrenListScreen> {
                   style: AppTextStyles.heading2,
                 ),
                 const SizedBox(height: 16),
-                const Text(
-                  'Texto de la sección de muestra.',
-                  style: TextStyle(fontSize: 16),
+                Text(
+                  'Usted tiene ${childrenList.length} niños',
+                  style: const TextStyle(fontSize: 16),
                 ),
-                const SizedBox(height: 32),
-                PrimaryButton(
-                  onPressed: () async {
-                    // Acción del botón
-                  },
+                const SizedBox(height: 16),
+                
+                // LISTA DE CHILDREN CARDS
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: childrenList.length,
+                    itemBuilder: (context, index) {
+                      final child = childrenList[index];
+                      return ChildSummaryCard(
+                        child: child,
+                        onTap: () {
+                          context.push('${AppRoutes.childDetail}/${child.id}'); 
+                        },
+                        summarize: true, 
+                      );
+                    },
+                  ),
                 ),
               ],
-            ))
+            ),
+          ),
         ],
       );
 

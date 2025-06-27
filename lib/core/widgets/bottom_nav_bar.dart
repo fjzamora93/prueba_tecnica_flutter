@@ -11,14 +11,19 @@ class BottomNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return BottomNavigationBar(
       currentIndex: _getCurrentIndex(context),
+      
       items: const [
         BottomNavigationBarItem(
-          icon: Icon(Icons.search),
-          label: 'Buscar',
+          icon: Icon(Icons.home_outlined),
+          label: 'Home',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.add_circle_outline),
-          label: 'Publicar',
+          icon: Icon(Icons.book),
+          label: 'Diario',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.search),
+          label: 'Niños',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.person_outline),
@@ -29,13 +34,16 @@ class BottomNavBar extends StatelessWidget {
       onTap: (i) {
         switch (i) {
           case 0:
-            context.push(AppRoutes.childDetail);
+            context.go(AppRoutes.home);
             break;
           case 1:
-            context.push(AppRoutes.childrenList);
+            context.go(AppRoutes.dailyJournal);
             break;
           case 2:
-            context.push(AppRoutes.profile);
+            context.go(AppRoutes.childrenList);
+            break;
+          case 3:
+            context.go(AppRoutes.profile);
             break;
        
         }
@@ -48,11 +56,12 @@ class BottomNavBar extends StatelessWidget {
   int _getCurrentIndex(BuildContext context) {
     final location = GoRouterState.of(context).uri.toString();
 
-    if (location.startsWith('/search')) return 0;
-    if (location.startsWith('/publish')) return 1;
-    if (location.startsWith('/profile')) return 2;
+    if (location.startsWith('/home')) return 0;
+    if (location.startsWith('/daily-journal')) return 1;
+    if (location.startsWith('/children')) return 2;
+    if (location.startsWith('/profile')) return 3;
 
-    return 0; // valor por defecto
+    return 0; 
   }
 
 }

@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:pruebakidsandclouds/core/helper/constants.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/data/models/child.dart';
+import 'package:pruebakidsandclouds/kidsandclouds/data/models/children_response.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'child_api_service.g.dart';
@@ -11,7 +12,7 @@ abstract class ChildApiService {
 
  
   @GET('/api')
-  Future<List<Child>> getChildren({
+  Future<ChildrenResponse> getChildren({
     @Query('results') int results = 10,
   });
 

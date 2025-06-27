@@ -30,7 +30,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     }
 
     return PrimaryScaffold(
-      hideBottonNavigationBar: true,
+      //hideBottonNavigationBar: true,
       children: [
         
         SizedBox(height: 25), 

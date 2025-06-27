@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pruebakidsandclouds/generated/l10n.dart';
 
 
 // EL Widget de confirmación da opción de aceptar o cancelar. 
@@ -22,14 +23,12 @@ class ConfirmationDialog extends StatelessWidget {
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(false),
-          //child: Text(S.of(context).cancel),
-          child: Text('Cancelar'),
+          child: Text(S.of(context).cancel),
 
         ),
         TextButton(
 
-          //child: Text(S.of(context).confirm),
-          child: Text('Confirmar'),
+          child: Text(S.of(context).confirm),
 
           onPressed: () {
             onAccept();

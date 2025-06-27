@@ -42,9 +42,22 @@ class Child {
   static Child empty() => const Child();
   
   // Métodos helper para acceder a datos anidados fácilmente
+  String get idValue => id['value'] ?? '';
   String get firstName => name['first'] ?? '';
   String get lastName => name['last'] ?? '';
+  String get title => name['title'] ?? '';
   String get fullName => '$firstName $lastName';
+
+  // EDAD
+  int get age => dob['age'] ?? 0;
+  String get dateOfBirth => dob['date'] ?? '';
+
+  // DIRECCIÓN
+  String get street => location['street']?['name'] ?? '';
+  String get city => location['city'] ?? '';
+  String get state => location['state'] ?? '';
+  String get country => location['country'] ?? '';
+  String get postcode => location['postcode']?.toString() ?? '';
 }
 
 

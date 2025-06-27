@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:pruebakidsandclouds/core/theme/app_colors.dart';
 import 'package:pruebakidsandclouds/generated/l10n.dart';
-import 'package:pruebakidsandclouds/kidsandclouds/presentation/components/primary_button.dart';
+import 'package:pruebakidsandclouds/core/widgets/primary_button.dart';
 
 
 
