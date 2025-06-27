@@ -22,5 +22,9 @@
 
   "splash1Title": "Welcome to Kids & Clouds",
   "splash2Title": "Manage your children's data",
-  "splash3Title": "Enjoy a safe and fun environment for your kids"
+  "splash3Title": "Enjoy a safe and fun environment for your kids",
+
+  "youHave": "You have",
+  "children": "children"
+
 }

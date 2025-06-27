@@ -28,6 +28,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "appTitle": MessageLookupByLibrary.simpleMessage("Kids & Clouds"),
     "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
     "childDetails": MessageLookupByLibrary.simpleMessage("Child Details"),
+    "children": MessageLookupByLibrary.simpleMessage("children"),
     "childrenList": MessageLookupByLibrary.simpleMessage("Children List"),
     "city": MessageLookupByLibrary.simpleMessage("City"),
     "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
@@ -50,5 +51,6 @@ class MessageLookup extends MessageLookupByLibrary {
       "Enjoy a safe and fun environment for your kids",
     ),
     "welcome": MessageLookupByLibrary.simpleMessage("Welcome"),
+    "youHave": MessageLookupByLibrary.simpleMessage("You have"),
   };
 }

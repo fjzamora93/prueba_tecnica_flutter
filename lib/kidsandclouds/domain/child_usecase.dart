@@ -9,7 +9,8 @@ class ChildUsecase {
 
   // GET ALL CHILDREN
   Future<List<Child>> getChildren({int results = 10}) async {
-    return await _childRepository.getChildren(results: results);
+    final childrenList = await _childRepository.getChildren(results: results);
+    return  childrenList;
   }
 
   Future<Child> getChildById(String id) async {

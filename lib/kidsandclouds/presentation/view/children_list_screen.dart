@@ -49,18 +49,19 @@ class _ChildrenListScreen extends ConsumerState<ChildrenListScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  S.of(context).welcome,
+                  S.of(context).childrenList,
                   style: AppTextStyles.heading2,
                 ),
                 const SizedBox(height: 16),
                 Text(
-                  'Usted tiene ${childrenList.length} niños',
+                  '${S.of(context).youHave} ${childrenList.length} ${S.of(context).children} ',
                   style: const TextStyle(fontSize: 16),
                 ),
                 const SizedBox(height: 16),
                 
                 // LISTA DE CHILDREN CARDS
-                Expanded(
+                SizedBox(
+                  height: 400, // O la altura que necesites
                   child: ListView.builder(
                     itemCount: childrenList.length,
                     itemBuilder: (context, index) {
@@ -68,7 +69,7 @@ class _ChildrenListScreen extends ConsumerState<ChildrenListScreen> {
                       return ChildSummaryCard(
                         child: child,
                         onTap: () {
-                          context.push('${AppRoutes.childDetail}/${child.id}'); 
+                          context.push('${AppRoutes.childDetail}/${child.idValue}'); 
                         },
                         summarize: true, 
                       );

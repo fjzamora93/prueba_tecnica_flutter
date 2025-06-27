@@ -188,6 +188,16 @@ class S {
       args: [],
     );
   }
+
+  /// `You have`
+  String get youHave {
+    return Intl.message('You have', name: 'youHave', desc: '', args: []);
+  }
+
+  /// `children`
+  String get children {
+    return Intl.message('children', name: 'children', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

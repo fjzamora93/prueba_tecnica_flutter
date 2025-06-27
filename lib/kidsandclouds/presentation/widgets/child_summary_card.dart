@@ -6,6 +6,7 @@ import 'package:pruebakidsandclouds/core/theme/app_colors.dart';
 import 'package:pruebakidsandclouds/core/widgets/default_card.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/data/models/child.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/presentation/widgets/child_name.dart';
+import 'package:pruebakidsandclouds/kidsandclouds/presentation/widgets/image_thumbnail.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/presentation/widgets/numeric_data_row.dart';
 
 
@@ -48,7 +49,11 @@ class ChildSummaryCard extends StatelessWidget {
               children: [
                 Column(
                   children: [
-                    Image.asset('assets/icons/icon-origen.png', width: 20, height: 20),
+                    ImageThumbnail(
+                      imageUrl: child.picture.thumbnail,
+                      size: 50,
+                      isCircular: true,
+                    ),
                    
                   ],
                 ),

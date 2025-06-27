@@ -15,6 +15,7 @@ class ChildrenNotifier extends AsyncNotifier<List<Child>> {
 
   @override
   Future<List<Child>> build() async {
+    _childUsecase = ref.read(childUseCaseProvider);
     return await ref.read(childUseCaseProvider).getChildren();
   }
 
@@ -27,4 +28,30 @@ class ChildrenNotifier extends AsyncNotifier<List<Child>> {
       state = AsyncValue.error(e, StackTrace.current);
     }
   }
+
+
+  // Filtrar por id desde este provider
+  Future<Child?> getChildById(String id) async {
+    // ✅ Obtener la lista actual del estado
+    final currentChildren = state.value;
+    
+    if (currentChildren == null || currentChildren.isEmpty) {
+      // ✅ Si no hay datos, cargar primero
+      await fetchChildren();
+      final newChildren = state.value;
+      if (newChildren == null) return null;
+      
+      // ✅ Buscar en la nueva lista
+      return newChildren.where((child) => 
+        child.id['value']?.toString() == id ||
+        child.login['uuid']?.toString() == id
+      ).firstOrNull;
+    }
+    
+    // ✅ Buscar en la lista existente
+    return currentChildren.where((child) => 
+      child.idValue == id 
+    ).firstOrNull;
+  }
+    
 }

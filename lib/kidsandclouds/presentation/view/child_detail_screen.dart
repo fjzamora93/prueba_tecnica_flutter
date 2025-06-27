@@ -6,7 +6,10 @@ import 'package:pruebakidsandclouds/core/theme/theme.dart';
 import 'package:pruebakidsandclouds/generated/l10n.dart';
 import 'package:pruebakidsandclouds/core/widgets/primary_button.dart';
 import 'package:pruebakidsandclouds/core/widgets/primary_scaffold.dart';
+import 'package:pruebakidsandclouds/kidsandclouds/data/models/child.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/presentation/providers/child_detail.provider.dart';
+import 'package:pruebakidsandclouds/kidsandclouds/presentation/providers/children_list_provider.dart';
+import 'package:pruebakidsandclouds/kidsandclouds/presentation/widgets/image_thumbnail.dart';
 
 class ChildDetailScreen extends ConsumerStatefulWidget {
   final String childId;
@@ -16,18 +19,25 @@ class ChildDetailScreen extends ConsumerStatefulWidget {
   ConsumerState<ChildDetailScreen> createState() => _ChildDetailScreen();
 }
 
+
 class _ChildDetailScreen extends ConsumerState<ChildDetailScreen> {
-
-
+  Child? childDetail;
+  
   @override
   void initState() {
     super.initState();
-    Future.microtask(() {
-      ref.read(childDetailProvider.notifier).getChildById(widget.childId);
+    Future.microtask(() async {
+      childDetail = await ref.read(childrenListProvider.notifier).getChildById(widget.childId);
+      
+      if (childDetail != null) {
+        ref.read(childDetailProvider.notifier).setChild(childDetail!);
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(S.of(context).error)),
+        );
+      }
     });
   }
-  
-
 
   @override
   Widget build(BuildContext context) {
@@ -40,37 +50,59 @@ class _ChildDetailScreen extends ConsumerState<ChildDetailScreen> {
         foregroundColor: AppColors.white,
       ),
       children: [
-        childState.when(
-          loading: () => const Center(child: CircularProgressIndicator()),
-          error: (error, _) => Padding(
-            padding: const EdgeInsets.all(8),
-            child: Text(S.of(context).error),
-          ),
-          data: (child) => Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                S.of(context).welcome,
-                style: AppTextStyles.heading2,
+        // LLamamos a los datos locales
+        childDetail != null 
+          ? _buildChildDetail(childDetail!)
+          : childState.when(
+              loading: () => const Center(child: CircularProgressIndicator()),
+              error: (error, _) => Padding(
+                padding: const EdgeInsets.all(8),
+                child: Text(S.of(context).error),
               ),
-              const SizedBox(height: 16),
-              const Text(
-                'Texto de la sección de muestra.',
-                style: TextStyle(fontSize: 16),
-              ),
-              const SizedBox(height: 32),
-              PrimaryButton(
-                onPressed: () async {
-                  // Tu lógica aquí
-                },
-              ),
-            ],
-          ),
-          
-        ),
+              data: (child) => _buildChildDetail(child),
+            ),
       ],
     );
   }
 
-   
+  Widget _buildChildDetail(Child child) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+
+        // MOSTRAR DETALLES
+        ImageThumbnail(
+          imageUrl: child.picture.large, 
+          size: 120,
+          isCircular: true,
+        ),
+        const SizedBox(height: 16),
+        Text(
+          '${child.name['first']} ${child.name['last']}',
+          style: AppTextStyles.heading1,
+        ),
+        const SizedBox(height: 8),
+        Text(
+          'Género: ${child.gender}',
+          style: AppTextStyles.body,
+        ),
+        const SizedBox(height: 8),
+        Text(
+          'Email: ${child.email}',
+          style: AppTextStyles.body,
+        ),
+        const SizedBox(height: 8),
+        Text(
+          'Teléfono: ${child.phone}',
+          style: AppTextStyles.body,
+        ),
+        const SizedBox(height: 32),
+        PrimaryButton(
+          onPressed: () async {
+            // Tu lógica aquí
+          },
+        ),
+      ],
+    );
+  }
 }
