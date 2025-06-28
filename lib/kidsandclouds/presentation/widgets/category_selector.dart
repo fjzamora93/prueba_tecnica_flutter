@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pruebakidsandclouds/core/theme/app_colors.dart';
+import 'package:pruebakidsandclouds/core/helper/responsive_helper.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/data/models/eventCategory.dart';
 
 class CategoryChip extends StatelessWidget {
@@ -21,11 +22,16 @@ class CategoryChip extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        margin: const EdgeInsets.only(right: 12),
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        margin: EdgeInsets.only(
+          right: ResponsiveHelper.responsiveValue(context, mobile: 12.0, desktop: 16.0),
+        ),
+        padding: EdgeInsets.symmetric(
+          horizontal: ResponsiveHelper.responsiveValue(context, mobile: 16.0, desktop: 20.0),
+          vertical: ResponsiveHelper.responsiveValue(context, mobile: 12.0, desktop: 14.0),
+        ),
         decoration: BoxDecoration(
           color: isSelected ? AppColors.primary : AppColors.white,
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(ResponsiveHelper.responsiveValue(context, mobile: 12.0, desktop: 14.0)),
           border: Border.all(
             color: isSelected ? AppColors.primary : AppColors.lightGrey,
             width: 1.5,
@@ -33,7 +39,7 @@ class CategoryChip extends StatelessWidget {
           boxShadow: [
             if (isSelected)
               BoxShadow(
-                color: AppColors.primary.withOpacity(0.3),
+                color: AppColors.primary.withValues(alpha: 0.3),
                 blurRadius: 8,
                 offset: const Offset(0, 2),
               ),
@@ -45,14 +51,15 @@ class CategoryChip extends StatelessWidget {
             Icon(
               _getCategoryIcon(category),
               color: isSelected ? AppColors.white : AppColors.primary,
-              size: 20,
+              size: ResponsiveHelper.responsiveValue(context, mobile: 20.0, desktop: 22.0),
             ),
-            const SizedBox(width: 8),
+            SizedBox(width: ResponsiveHelper.responsiveValue(context, mobile: 8.0, desktop: 10.0)),
             Text(
               category.displayName,
               style: theme.textTheme.bodyMedium?.copyWith(
                 color: isSelected ? AppColors.white : AppColors.textPrimary,
                 fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
+                fontSize: ResponsiveHelper.responsiveValue(context, mobile: 14.0, desktop: 15.0),
               ),
             ),
           ],
@@ -95,56 +102,95 @@ class CategorySelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDesktop = ResponsiveHelper.isDesktop(context);
+    
     return Container(
-      height: 50,
-      child: ListView(
-        scrollDirection: Axis.horizontal,
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        children: [
-          // Botón "Todos" (opcional)
-          if (onShowAll != null)
-            GestureDetector(
-              onTap: onShowAll,
-              child: Container(
-                margin: const EdgeInsets.only(right: 12),
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                decoration: BoxDecoration(
-                  color: selectedCategory == null ? AppColors.primary : AppColors.white,
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(
-                    color: selectedCategory == null ? AppColors.primary : AppColors.lightGrey,
-                    width: 1.5,
-                  ),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(
-                      Icons.apps,
-                      color: selectedCategory == null ? AppColors.white : AppColors.primary,
-                      size: 20,
-                    ),
-                    const SizedBox(width: 8),
-                    Text(
-                      'Todos',
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: selectedCategory == null ? AppColors.white : AppColors.textPrimary,
-                        fontWeight: selectedCategory == null ? FontWeight.w600 : FontWeight.w500,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          
-          // Categorías
-          ...categories.map((category) => CategoryChip(
-            category: category,
-            isSelected: selectedCategory == category,
-            onTap: () => onCategorySelected(category),
-          )).toList(),
-        ],
+      height: ResponsiveHelper.responsiveValue(context, mobile: 50.0, desktop: 60.0),
+      child: isDesktop ? _buildDesktopLayout(context) : _buildMobileLayout(context),
+    );
+  }
+
+  Widget _buildMobileLayout(BuildContext context) {
+    return ListView(
+      scrollDirection: Axis.horizontal,
+      padding: EdgeInsets.symmetric(
+        horizontal: ResponsiveHelper.responsiveValue(context, mobile: 16.0, desktop: 24.0),
+      ),
+      children: _buildCategoryItems(context),
+    );
+  }
+
+  Widget _buildDesktopLayout(BuildContext context) {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      padding: EdgeInsets.symmetric(
+        horizontal: ResponsiveHelper.responsiveValue(context, mobile: 16.0, desktop: 24.0),
+      ),
+      child: Row(
+        children: _buildCategoryItems(context),
       ),
     );
+  }
+
+  List<Widget> _buildCategoryItems(BuildContext context) {
+    List<Widget> items = [];
+    
+    // Botón "Todos" (opcional)
+    if (onShowAll != null) {
+      items.add(
+        GestureDetector(
+          onTap: onShowAll,
+          child: Container(
+            margin: EdgeInsets.only(
+              right: ResponsiveHelper.responsiveValue(context, mobile: 12.0, desktop: 16.0),
+            ),
+            padding: EdgeInsets.symmetric(
+              horizontal: ResponsiveHelper.responsiveValue(context, mobile: 16.0, desktop: 20.0),
+              vertical: ResponsiveHelper.responsiveValue(context, mobile: 12.0, desktop: 14.0),
+            ),
+            decoration: BoxDecoration(
+              color: selectedCategory == null ? AppColors.primary : AppColors.white,
+              borderRadius: BorderRadius.circular(
+                ResponsiveHelper.responsiveValue(context, mobile: 12.0, desktop: 14.0),
+              ),
+              border: Border.all(
+                color: selectedCategory == null ? AppColors.primary : AppColors.lightGrey,
+                width: 1.5,
+              ),
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(
+                  Icons.apps,
+                  color: selectedCategory == null ? AppColors.white : AppColors.primary,
+                  size: ResponsiveHelper.responsiveValue(context, mobile: 20.0, desktop: 22.0),
+                ),
+                SizedBox(width: ResponsiveHelper.responsiveValue(context, mobile: 8.0, desktop: 10.0)),
+                Text(
+                  'Todos',
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: selectedCategory == null ? AppColors.white : AppColors.textPrimary,
+                    fontWeight: selectedCategory == null ? FontWeight.w600 : FontWeight.w500,
+                    fontSize: ResponsiveHelper.responsiveValue(context, mobile: 14.0, desktop: 15.0),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+    }
+    
+    // Categorías
+    items.addAll(
+      categories.map((category) => CategoryChip(
+        category: category,
+        isSelected: selectedCategory == category,
+        onTap: () => onCategorySelected(category),
+      )).toList(),
+    );
+    
+    return items;
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pruebakidsandclouds/core/theme/theme.dart';
+import 'package:pruebakidsandclouds/core/helper/responsive_helper.dart';
 import 'package:pruebakidsandclouds/generated/l10n.dart';
 import 'package:pruebakidsandclouds/core/widgets/primary_scaffold.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/presentation/widgets/carrousel_item.dart';
@@ -30,47 +31,21 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-
+    final isDesktop = ResponsiveHelper.isDesktop(context);
+    
     return PrimaryScaffold(
       backgroundColor: AppColors.white,
       children: [
-        const SizedBox(height: 30),
+        SizedBox(height: ResponsiveHelper.responsiveValue(context, mobile: 30.0, desktop: 50.0)),
 
         SizedBox(
-          height: 350,
-          child: PageView(
-            controller: _pageController,
-            onPageChanged: (index) {
-              setState(() {
-                _currentPage = index; 
-              });
-            },
-            children: [
-              CarouselItem(
-                imagePath: 'assets/img/home_illustration_1.png',
-                title: S.of(context).splash1Title,
-                description: S.of(context).splash1Subtitle, 
-              ),
-              CarouselItem(
-                imagePath: 'assets/img/home_illustration_2.png',
-                title: S.of(context).splash2Title,
-                description: S.of(context).splash2Subtitle, 
-
-              ),
-              CarouselItem(
-                imagePath: 'assets/img/home_illustration_3.png',
-                title: S.of(context).splash3Title,
-                description: S.of(context).splash3Subtitle, 
-
-              ),
-              const SizedBox(height: 30),
-
-            ],
-          ),
+          height: ResponsiveHelper.responsiveValue(context, mobile: 350.0, desktop: 500.0),
+          child: isDesktop ? _buildDesktopCarousel() : _buildMobileCarousel(),
         ),
 
+        SizedBox(height: ResponsiveHelper.responsiveValue(context, mobile: 20.0, desktop: 30.0)),
 
-        // Los puntos de la parte inferior
+        // Navigation dots
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: List.generate(
@@ -83,29 +58,82 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   curve: Curves.easeInOut,
                 );
               },
-              child: _Dot(isActive: index == _currentPage),
+              child: _Dot(
+                isActive: index == _currentPage,
+                isDesktop: isDesktop,
+              ),
             ),
           ),
         ),
 
-        const SizedBox(height: 12),
-
-
+        SizedBox(height: ResponsiveHelper.responsiveValue(context, mobile: 12.0, desktop: 20.0)),
       ],
     );
+  }
+
+  Widget _buildMobileCarousel() {
+    return PageView(
+      controller: _pageController,
+      onPageChanged: (index) {
+        setState(() {
+          _currentPage = index; 
+        });
+      },
+      children: _buildCarouselItems(),
+    );
+  }
+
+  Widget _buildDesktopCarousel() {
+    return PageView(
+      controller: _pageController,
+      onPageChanged: (index) {
+        setState(() {
+          _currentPage = index; 
+        });
+      },
+      children: _buildCarouselItems(),
+    );
+  }
+
+  List<Widget> _buildCarouselItems() {
+    return [
+      CarouselItem(
+        imagePath: 'assets/img/home_illustration_1.png',
+        title: S.of(context).splash1Title,
+        description: S.of(context).splash1Subtitle, 
+      ),
+      CarouselItem(
+        imagePath: 'assets/img/home_illustration_2.png',
+        title: S.of(context).splash2Title,
+        description: S.of(context).splash2Subtitle, 
+      ),
+      CarouselItem(
+        imagePath: 'assets/img/home_illustration_3.png',
+        title: S.of(context).splash3Title,
+        description: S.of(context).splash3Subtitle, 
+      ),
+    ];
   }
 }
 
 class _Dot extends StatelessWidget {
   final bool isActive;
-  const _Dot({required this.isActive});
+  final bool isDesktop;
+  
+  const _Dot({
+    required this.isActive,
+    this.isDesktop = false,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final activeSize = isDesktop ? 16.0 : 12.0;
+    final inactiveSize = isDesktop ? 12.0 : 8.0;
+    
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 4),
-      width: isActive ? 12 : 8, // ✅ OPCIONAL: hacer más visible la diferencia
-      height: isActive ? 12 : 8,
+      margin: EdgeInsets.symmetric(horizontal: isDesktop ? 6 : 4),
+      width: isActive ? activeSize : inactiveSize,
+      height: isActive ? activeSize : inactiveSize,
       decoration: BoxDecoration(
         color: isActive ? AppColors.primary : AppColors.textSecondary.withOpacity(0.3),
         shape: BoxShape.circle,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pruebakidsandclouds/core/theme/app_colors.dart';
+import 'package:pruebakidsandclouds/core/helper/responsive_helper.dart';
 import 'package:pruebakidsandclouds/core/widgets/default_card.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/data/models/event.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/data/models/eventCategory.dart';
@@ -17,6 +18,7 @@ class EventCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final isDesktop = ResponsiveHelper.isDesktop(context);
     
     return DefaultCard(
       onTap: onTap,
@@ -28,17 +30,19 @@ class EventCard extends StatelessWidget {
             children: [
               // Icono de categoría
               Container(
-                padding: const EdgeInsets.all(8),
+                padding: EdgeInsets.all(ResponsiveHelper.responsiveValue(context, mobile: 8.0, desktop: 10.0)),
                 decoration: BoxDecoration(
                   color: _getCategoryColor(event.category),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Text(
                   event.categoryIcon,
-                  style: const TextStyle(fontSize: 16),
+                  style: TextStyle(
+                    fontSize: ResponsiveHelper.responsiveValue(context, mobile: 16.0, desktop: 18.0),
+                  ),
                 ),
               ),
-              const SizedBox(width: 12),
+              SizedBox(width: ResponsiveHelper.responsiveValue(context, mobile: 12.0, desktop: 16.0)),
               
               // Información de categoría y fecha
               Expanded(
@@ -50,14 +54,15 @@ class EventCard extends StatelessWidget {
                       style: theme.textTheme.bodySmall?.copyWith(
                         color: _getCategoryColor(event.category),
                         fontWeight: FontWeight.w600,
+                        fontSize: isDesktop ? 14 : null,
                       ),
                     ),
-                    const SizedBox(height: 2),
+                    SizedBox(height: ResponsiveHelper.responsiveValue(context, mobile: 2.0, desktop: 4.0)),
                     Text(
                       event.date,
                       style: theme.textTheme.bodySmall?.copyWith(
                         color: AppColors.textSecondary,
-                        fontSize: 12,
+                        fontSize: ResponsiveHelper.responsiveValue(context, mobile: 12.0, desktop: 13.0),
                       ),
                     ),
                   ],
@@ -66,7 +71,7 @@ class EventCard extends StatelessWidget {
             ],
           ),
           
-          const SizedBox(height: 12),
+          SizedBox(height: ResponsiveHelper.responsiveValue(context, mobile: 12.0, desktop: 16.0)),
           
           // Título del evento
           if (event.hasTitle) ...[
@@ -75,9 +80,10 @@ class EventCard extends StatelessWidget {
               style: theme.textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.bold,
                 color: AppColors.textPrimary,
+                fontSize: ResponsiveHelper.responsiveValue(context, mobile: 16.0, desktop: 18.0),
               ),
             ),
-            const SizedBox(height: 8),
+            SizedBox(height: ResponsiveHelper.responsiveValue(context, mobile: 8.0, desktop: 10.0)),
           ],
           
           // Descripción del evento
@@ -86,8 +92,9 @@ class EventCard extends StatelessWidget {
             style: theme.textTheme.bodyMedium?.copyWith(
               color: AppColors.textSecondary,
               height: 1.4,
+              fontSize: ResponsiveHelper.responsiveValue(context, mobile: 14.0, desktop: 15.0),
             ),
-            maxLines: 3,
+            maxLines: ResponsiveHelper.responsiveValue(context, mobile: 3, desktop: 4),
             overflow: TextOverflow.ellipsis,
           ),
         ],
