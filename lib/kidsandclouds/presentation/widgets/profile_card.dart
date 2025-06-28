@@ -24,12 +24,10 @@ class ProfileCard extends StatelessWidget {
       child: ListTile(
         leading: CircleAvatar(
           radius: 28,
-          backgroundImage: (user.image != null && user.image!.isNotEmpty)
-            ? NetworkImage(user.image!)
-            : const AssetImage('assets/img/default_avatar.png') as ImageProvider,
+          backgroundImage: NetworkImage(user.image),
         ),
-        title: Text(user.firstName!, style: Theme.of(context).textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold)),
-        subtitle: Text(user.email!, style: Theme.of(context).textTheme.bodyMedium),
+        title: Text(user.firstName, style: Theme.of(context).textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold)),
+        subtitle: Text(user.email, style: Theme.of(context).textTheme.bodyMedium),
         trailing: const Icon(Icons.arrow_forward_rounded, color: AppColors.borderFocused,),
         onTap: onTap,
       ),

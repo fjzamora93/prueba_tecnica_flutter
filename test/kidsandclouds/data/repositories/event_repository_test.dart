@@ -28,6 +28,7 @@ void main() {
   ]
   ''';
 
+  // Interceptamos la carga del archivo JSON para devolver nuestro mock
   setUp(() {
     ServicesBinding.instance.defaultBinaryMessenger.setMockMessageHandler('flutter/assets', (message) async {
       final String key = utf8.decode(message!.buffer.asUint8List());
@@ -38,6 +39,7 @@ void main() {
     });
   });
 
+  // Testamos que se cargan los eventos filtrados
   test('getFilteredEvents devuelve solo los eventos de la categoría solicitada', () async {
     final repo = EventRepository();
 
@@ -50,12 +52,11 @@ void main() {
     expect(events.first.category.value, 'alimentacion');
   });
 
+
   // testamos que se devuelven todos los eventos
   test('getEvents devuelve todos los eventos', () async {
     final repo = EventRepository();
-
     final events = await repo.getEvents();
-
     expect(events.length, 2);
   });
 }

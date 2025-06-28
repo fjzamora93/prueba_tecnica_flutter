@@ -29,7 +29,6 @@ class DefaultCard extends StatelessWidget {
     final theme = Theme.of(context);
     final cardTheme = theme.cardTheme;
     final shape = cardTheme.shape ?? RoundedRectangleBorder(borderRadius: BorderRadius.circular(6));
-    final margin = cardTheme.margin ?? EdgeInsets.zero;
     final padding = EdgeInsets.all(16.0);
 
     BorderRadius? inkWellBorderRadius;
