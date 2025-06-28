@@ -293,6 +293,31 @@ class S {
   String get logoutButton {
     return Intl.message('Logout', name: 'logoutButton', desc: '', args: []);
   }
+
+  /// `Personal Information`
+  String get personalInfo {
+    return Intl.message(
+      'Personal Information',
+      name: 'personalInfo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Legal Guardian's Phone`
+  String get telephone {
+    return Intl.message(
+      'Legal Guardian\'s Phone',
+      name: 'telephone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Gender`
+  String get gender {
+    return Intl.message('Gender', name: 'gender', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

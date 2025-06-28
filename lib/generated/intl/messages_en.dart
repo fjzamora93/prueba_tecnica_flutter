@@ -37,6 +37,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "diary": MessageLookupByLibrary.simpleMessage("Daily Journal"),
     "email": MessageLookupByLibrary.simpleMessage("Email"),
     "error": MessageLookupByLibrary.simpleMessage("An error occurred"),
+    "gender": MessageLookupByLibrary.simpleMessage("Gender"),
     "home": MessageLookupByLibrary.simpleMessage("Home"),
     "language": MessageLookupByLibrary.simpleMessage("Language"),
     "list": MessageLookupByLibrary.simpleMessage("List"),
@@ -48,6 +49,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "name": MessageLookupByLibrary.simpleMessage("Name"),
     "noData": MessageLookupByLibrary.simpleMessage("No data available"),
     "password": MessageLookupByLibrary.simpleMessage("password"),
+    "personalInfo": MessageLookupByLibrary.simpleMessage(
+      "Personal Information",
+    ),
     "phone": MessageLookupByLibrary.simpleMessage("Phone"),
     "profile": MessageLookupByLibrary.simpleMessage("Profile"),
     "refresh": MessageLookupByLibrary.simpleMessage("Refresh"),
@@ -69,6 +73,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "splash3Title": MessageLookupByLibrary.simpleMessage(
       "Enjoy a safe and fun environment for your kids",
+    ),
+    "telephone": MessageLookupByLibrary.simpleMessage(
+      "Legal Guardian\'s Phone",
     ),
     "username": MessageLookupByLibrary.simpleMessage("username"),
     "welcome": MessageLookupByLibrary.simpleMessage("Welcome"),

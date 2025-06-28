@@ -44,8 +44,10 @@
   "username": "Nombre de Usuario",
   "password": "Contraseña",
   "loginButton": "Iniciar Sesión",
-  "logoutButton": "Cerrar Sesión"
+  "logoutButton": "Cerrar Sesión",
   
-
+    "personalInfo": "Información Personal",
+  "telephone": "Teléfono del Tutor Legal",
+  "gender": "Género"
 
 }

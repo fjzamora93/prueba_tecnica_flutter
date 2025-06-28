@@ -58,6 +58,12 @@ abstract class UserApiService {
 }
 ```
 
+# Tests
+
+```
+flutter test test/kidsandclouds/data/repositories/event_repository_test.dart
+```
+
 
 
 # Interceptores
