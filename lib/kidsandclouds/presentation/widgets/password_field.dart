@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pruebakidsandclouds/core/widgets/custom_textfield.dart';
 import 'package:pruebakidsandclouds/core/widgets/eye_visibility_icon.dart';
+import 'package:pruebakidsandclouds/generated/l10n.dart';
 
 
 class PasswordFieldWidget extends StatefulWidget {
@@ -20,7 +21,7 @@ class _PasswordFieldWidgetState extends State<PasswordFieldWidget> {
   @override
   Widget build(BuildContext context) {
     return CustomTextField(
-      label: widget.label ?? "Contraseña",
+      label: widget.label ?? S.of(context).password,
       obscureText: !_passwordVisible,
       controller: widget.controller,
       isError: false,

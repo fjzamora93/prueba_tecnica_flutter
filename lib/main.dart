@@ -2,20 +2,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:pruebakidsandclouds/core/navigation/router.dart';
+import 'package:pruebakidsandclouds/core/providers/locale_provider.dart';
 import 'package:pruebakidsandclouds/generated/l10n.dart';
-import 'package:pruebakidsandclouds/kidsandclouds/presentation/view/home_screen.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final locale = ref.watch(localeProvider);
+    
     return MaterialApp.router(
       title: 'Kids & Clouds',
       theme: ThemeData(
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
       ),
 
       // IDIOMAS Y LOCALILZACIÓN
+      locale: locale,
       localizationsDelegates: const [
         S.delegate,                               
         GlobalMaterialLocalizations.delegate,    

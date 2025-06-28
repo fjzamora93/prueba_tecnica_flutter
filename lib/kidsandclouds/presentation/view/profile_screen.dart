@@ -7,10 +7,10 @@ import 'package:pruebakidsandclouds/core/theme/app_colors.dart';
 import 'package:pruebakidsandclouds/core/theme/theme.dart';
 import 'package:pruebakidsandclouds/core/widgets/menu_card.dart';
 import 'package:pruebakidsandclouds/generated/l10n.dart';
-import 'package:pruebakidsandclouds/core/widgets/primary_button.dart';
 import 'package:pruebakidsandclouds/core/widgets/primary_scaffold.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/presentation/providers/auth_provider.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/presentation/widgets/profile_card.dart';
+import 'package:pruebakidsandclouds/kidsandclouds/presentation/widgets/language_selection_dialog.dart';
 
 class ProfileScreen  extends ConsumerWidget {
   const ProfileScreen({super.key});
@@ -67,8 +67,13 @@ class ProfileScreen  extends ConsumerWidget {
             const SizedBox(height: 8),
             MenuCard(
               icon: Image.asset('assets/icons/icon-settings.png', width: 30, height: 30),
-              label: 'Idiomas',
-              onTap: () => context.push(AppRoutes.home),
+              label: S.of(context).language,
+              onTap: () {
+                showDialog(
+                  context: context,
+                  builder: (context) => const LanguageSelectionDialog(),
+                );
+              },
             ),
 
             const SizedBox(height: 24),

@@ -36,5 +36,16 @@
   "splash3Subtitle": "Un espacio seguro y divertido para que tus hijos aprendan y jueguen",
 
   "youHave": "Usted tiene",
-  "children": "niños"
+  "children": "niños",
+
+  "selectLanguage": "Seleccionar Idioma",
+  "language": "Idioma",
+
+  "username": "Nombre de Usuario",
+  "password": "Contraseña",
+  "loginButton": "Iniciar Sesión",
+  "logoutButton": "Cerrar Sesión"
+  
+
+
 }

@@ -38,15 +38,22 @@ class MessageLookup extends MessageLookupByLibrary {
     "email": MessageLookupByLibrary.simpleMessage("Correo"),
     "error": MessageLookupByLibrary.simpleMessage("Ocurrió un error"),
     "home": MessageLookupByLibrary.simpleMessage("Home"),
+    "language": MessageLookupByLibrary.simpleMessage("Idioma"),
     "list": MessageLookupByLibrary.simpleMessage("Listado"),
     "loading": MessageLookupByLibrary.simpleMessage("Cargando..."),
     "login": MessageLookupByLibrary.simpleMessage("Login"),
+    "loginButton": MessageLookupByLibrary.simpleMessage("Iniciar Sesión"),
     "logout": MessageLookupByLibrary.simpleMessage("Logout"),
+    "logoutButton": MessageLookupByLibrary.simpleMessage("Cerrar Sesión"),
     "name": MessageLookupByLibrary.simpleMessage("Nombre"),
     "noData": MessageLookupByLibrary.simpleMessage("No hay datos disponibles"),
+    "password": MessageLookupByLibrary.simpleMessage("Contraseña"),
     "phone": MessageLookupByLibrary.simpleMessage("Teléfono"),
     "profile": MessageLookupByLibrary.simpleMessage("PErfil"),
     "refresh": MessageLookupByLibrary.simpleMessage("Actualizar"),
+    "selectLanguage": MessageLookupByLibrary.simpleMessage(
+      "Seleccionar Idioma",
+    ),
     "splash1Subtitle": MessageLookupByLibrary.simpleMessage(
       "Los datos de tus hijos están seguros con nosotros",
     ),
@@ -65,6 +72,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "splash3Title": MessageLookupByLibrary.simpleMessage(
       "Disfruta de un entorno seguro y divertido para tus hijos",
     ),
+    "username": MessageLookupByLibrary.simpleMessage("Nombre de Usuario"),
     "welcome": MessageLookupByLibrary.simpleMessage("Bienvenido"),
     "youHave": MessageLookupByLibrary.simpleMessage("Usted tiene"),
   };

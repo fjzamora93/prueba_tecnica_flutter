@@ -7,6 +7,7 @@ import 'package:pruebakidsandclouds/core/widgets/custom_loading_indicator.dart';
 import 'package:pruebakidsandclouds/core/widgets/logo.dart';
 import 'package:pruebakidsandclouds/core/widgets/primary_button.dart';
 import 'package:pruebakidsandclouds/core/widgets/primary_scaffold.dart';
+import 'package:pruebakidsandclouds/generated/l10n.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/presentation/providers/auth_provider.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/presentation/widgets/login_texfield.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/presentation/widgets/password_field.dart';
@@ -104,12 +105,12 @@ class LoginScreen extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Iniciar sesión", 
+              S.of(ctx).loginButton, 
               style: AppTextStyles.heading2
             ),
             const SizedBox(height: 24),
             LoginTextField(
-              label: "Username",
+              label: S.of(ctx).username,
               controller: _emailCtrl,
               isError: authState.hasError, 
               obscureText: false,
