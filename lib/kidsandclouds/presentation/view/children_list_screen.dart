@@ -68,7 +68,7 @@ class _ChildrenListScreen extends ConsumerState<ChildrenListScreen> {
                         onTap: () {
                           context.push('${AppRoutes.childDetail}/${child.idValue}'); 
                         },
-                        summarize: true, 
+                        summarize: false, 
                       );
                     },
                   ),
