@@ -1,5 +1,5 @@
 
-import 'package:pruebakidsandclouds/kidsandclouds/data/models/login_response.dart';
+import 'package:pruebakidsandclouds/kidsandclouds/data/models/user.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/data/repositories/auth_repository.dart';
 
 class AuthUseCase {
@@ -7,10 +7,17 @@ class AuthUseCase {
 
   AuthUseCase(this.repository);
 
-  Future<LoginResponse> login(String email, String password) {
+  Future<User> login(String email, String password) {
     return repository.login(email, password);
   }
 
+  Future<User> me() {
+    return repository.me();
+  }
+
+  Future<void> logout() {
+    return repository.logout();
+  }
 
 
 }

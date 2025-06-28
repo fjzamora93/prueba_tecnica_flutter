@@ -2,7 +2,7 @@
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pruebakidsandclouds/core/di/api_service_module.dart';
-import 'package:pruebakidsandclouds/core/di/general_module.dart';
+import 'package:pruebakidsandclouds/core/di/network_module.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/data/repositories/auth_repository.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/data/repositories/child_repository.dart';
 

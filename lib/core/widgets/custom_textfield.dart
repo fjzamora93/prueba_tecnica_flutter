@@ -44,7 +44,7 @@ class CustomTextField extends StatelessWidget {
             final bool isFilled = value.text.isNotEmpty;
             final Color fillColor = isFilled
                 ? AppColors.white // Blanco cuando está lleno
-                : AppColors.lightGrey ; // Gris claro cuando está vacío
+                : AppColors.backgroundInput ; // Gris claro cuando está vacío
             final Color borderColor = isError ? Colors.red : (isFilled ? AppColors.black  : Colors.transparent);
             final Color labelColor = isError ? Colors.red : (theme.inputDecorationTheme.labelStyle?.color ?? Colors.black);
 

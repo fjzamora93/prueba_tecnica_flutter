@@ -30,14 +30,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
 
     return PrimaryScaffold(
+      backgroundColor: AppColors.white,
       children: [
         const SizedBox(height: 30),
 
         SizedBox(
-          height: 300,
+          height: 350,
           child: PageView(
             controller: _pageController,
             onPageChanged: (index) {
@@ -49,18 +49,26 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               CarouselItem(
                 imagePath: 'assets/img/home_illustration_1.png',
                 title: S.of(context).splash1Title,
+                description: S.of(context).splash1Subtitle, 
               ),
               CarouselItem(
                 imagePath: 'assets/img/home_illustration_2.png',
                 title: S.of(context).splash2Title,
+                description: S.of(context).splash2Subtitle, 
+
               ),
               CarouselItem(
                 imagePath: 'assets/img/home_illustration_3.png',
                 title: S.of(context).splash3Title,
+                description: S.of(context).splash3Subtitle, 
+
               ),
+              const SizedBox(height: 30),
+
             ],
           ),
         ),
+
 
         // Los puntos de la parte inferior
         Row(

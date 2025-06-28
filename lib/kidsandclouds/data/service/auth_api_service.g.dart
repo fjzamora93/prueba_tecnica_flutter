@@ -10,7 +10,7 @@ part of 'auth_api_service.dart';
 
 class _AuthApiService implements AuthApiService {
   _AuthApiService(this._dio, {this.baseUrl, this.errorLogger}) {
-    baseUrl ??= 'https://dummyjson.com/users';
+    baseUrl ??= 'https://dummyjson.com';
   }
 
   final Dio _dio;
@@ -30,7 +30,7 @@ class _AuthApiService implements AuthApiService {
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/api/login',
+            '/auth/login',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -57,7 +57,7 @@ class _AuthApiService implements AuthApiService {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/User',
+            '/auth/me',
             queryParameters: queryParameters,
             data: _data,
           )

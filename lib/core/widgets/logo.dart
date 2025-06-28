@@ -8,13 +8,13 @@ class Logo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: CircleAvatar(
-        radius: 40,
+        radius: 60,
         backgroundColor: AppColors.primary.withOpacity(0.1),
         child: ClipOval(
           child: Image.asset(
             'assets/img/logo.png',
-            width: 40,
-            height: 40
+            width: 120,
+            height: 120
           ),
         ),
       ),

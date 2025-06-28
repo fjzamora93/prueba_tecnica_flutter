@@ -11,11 +11,11 @@ part 'auth_api_service.g.dart';
 abstract class AuthApiService {
   factory AuthApiService(Dio dio, {String baseUrl}) = _AuthApiService;
 
-  @POST("/api/login")
+  @POST("/auth/login")
   Future<LoginResponse> login(@Body() LoginRequest loginRequest);
   
 
-  @GET("/User")
+  @GET("/auth/me")
   Future<LoginResponse> me();
 
 }

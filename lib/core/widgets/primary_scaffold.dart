@@ -6,6 +6,7 @@ import 'package:pruebakidsandclouds/core/widgets/bottom_nav_bar.dart';
 
 
 class PrimaryScaffold extends StatelessWidget {
+  final Color? backgroundColor;
   final PreferredSizeWidget? appBar;
   final List<Widget> children;
   final FloatingActionButton? floatingActionButton;
@@ -17,6 +18,7 @@ class PrimaryScaffold extends StatelessWidget {
     required this.children,
     this.floatingActionButton,
     this.hideBottonNavigationBar = false,
+    this.backgroundColor = AppColors.backgroundInput,
   });
 
   @override
@@ -29,7 +31,7 @@ class PrimaryScaffold extends StatelessWidget {
           children: children,
         ),
       ),
-      backgroundColor: AppColors.backgroundInput,
+      backgroundColor: backgroundColor,
       bottomNavigationBar: hideBottonNavigationBar ? null : const BottomNavBar() ,
       floatingActionButton: floatingActionButton,
     );

@@ -4,11 +4,14 @@ import 'package:pruebakidsandclouds/core/theme/app_colors.dart';
 class CarouselItem extends StatelessWidget {
   final String imagePath;
   final String title;
+  final String description;
 
   const CarouselItem({
     super.key,
     required this.imagePath,
     required this.title,
+    required this.description,
+
   });
 
   @override
@@ -35,6 +38,18 @@ class CarouselItem extends StatelessWidget {
           textAlign: TextAlign.center,
         ),
         const SizedBox(height: 16),
+
+        Expanded(
+          child: Text(
+            description,
+            style: theme.textTheme.bodyMedium?.copyWith(
+              color: AppColors.textSubtitle,
+              fontSize: 15,
+            ),
+            textAlign: TextAlign.center,
+            overflow: TextOverflow.fade, // ✅ FADE EN LUGAR DE CLIP
+          ),
+        ),
        
       ],
     );

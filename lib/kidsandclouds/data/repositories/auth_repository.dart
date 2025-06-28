@@ -1,11 +1,16 @@
 
 import 'package:dio/dio.dart';
+import 'package:pruebakidsandclouds/core/helper/log_helper.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/data/models/login_request.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/data/models/login_response.dart';
+import 'package:pruebakidsandclouds/kidsandclouds/data/models/user.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/data/service/auth_api_service.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/security/token_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+
+
+// TODO:  En un proyecto real, habríamos creado un Interface del cuál este repositorio se implementa. 
 class AuthRepository {
   final AuthApiService api;
   final TokenStorage storage;
@@ -14,16 +19,17 @@ class AuthRepository {
 
   AuthRepository(this.api, this.storage);
 
-  Future<LoginResponse> login(String username, String password) async {
+  Future<User> login(String username, String password) async {
     try {
       final loginRequest = LoginRequest(username: username, password: password);
-      final response = await api.login(loginRequest);
+      final LoginResponse response= await api.login(loginRequest);
       await storage.saveTokens(
         accessToken: response.accessToken,
         refreshToken: response.refreshToken,
       );
-   
-      return response;
+
+      User user = User.fromLoginResponse(response);
+      return user;
     } catch (e) {
       if (e is DioError && e.response != null) {
         final data = e.response?.data;
@@ -36,21 +42,27 @@ class AuthRepository {
   }
 
 
+  Future<User> me() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final LoginResponse response = await api.me();
+      User user = User.fromLoginResponse(response);
+      return user;
+    } catch (e) {
+      Log.e('Error en me(): $e');
+      rethrow;
+    }
+  }
 
-  // Future<LoginResponse> me() async {
-  //   try {
-  //     final prefs = await SharedPreferences.getInstance();
-  //     final userString = prefs.getString('user');
-  //     if (userString == null || userString.isEmpty) {
-  //       throw Exception('No user found in storage');
-  //     }
-   
-  //     final user = User.fromJson(userJson);
-  //     return user;
-  //   } catch (e) {
-  //     Log.e('Error en me(): $e');
-  //     rethrow;
-  //   }
-  // }
+  Future<void> logout() async {
+    try {
+      await storage.clearTokens();
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.remove('user');
+    } catch (e) {
+      Log.e('Error en logout(): $e');
+      rethrow;
+    }
+  }
 
 }

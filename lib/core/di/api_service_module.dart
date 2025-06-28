@@ -1,6 +1,6 @@
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pruebakidsandclouds/core/di/general_module.dart';
+import 'package:pruebakidsandclouds/core/di/network_module.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/data/service/auth_api_service.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/data/service/child_api_service.dart';
 

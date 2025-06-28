@@ -1,67 +1,47 @@
 import 'package:flutter/material.dart';
-import 'package:pruebakidsandclouds/core/theme/app_colors.dart'; // Asegúrate de importar el tema
+import 'package:pruebakidsandclouds/core/widgets/custom_textfield.dart'; 
 
 
-class LoginTextField extends StatelessWidget {
+
+class LoginTextField extends StatefulWidget {
   final String label;
   final IconData? icon;
   final bool obscureText;
   final bool isError; 
   final TextEditingController? controller;
   final Widget? suffixIcon;
+  final String? errorText;
+  
   const LoginTextField({
     super.key,
     required this.label,
     this.icon,
-    required this.obscureText,
-    required this.isError,
+    this.obscureText = false,
+    this.isError = false,
     this.controller,
     this.suffixIcon,
+    this.errorText,
   });
 
   @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final focusNode = FocusNode();
+  State<LoginTextField> createState() => _LoginTextFieldState();
+}
 
-    return StatefulBuilder(
-      builder: (context, setState) {
-        focusNode.addListener(() {
-          setState(() {});
-        });
-        return ValueListenableBuilder<TextEditingValue>(
-          valueListenable: controller!,
-          builder: (context, value, child) {
-            final bool isFocused = focusNode.hasFocus;
-            final bool isFilled = value.text.isNotEmpty;
-            final Color fillColor = (isFocused || isFilled)
-                ? AppColors.white // Blanco cuando está lleno o en focus
-                : AppColors.lightGrey; // Gris claro cuando está vacío
-            return TextField(
-              controller: controller,
-              focusNode: focusNode,
-              obscureText: obscureText,
-              decoration: InputDecoration(
-                labelText: label,
-                suffixIcon: suffixIcon ?? (icon != null ? Icon(icon) : null),
-                filled: true,
-                fillColor: fillColor,
-                hintStyle: TextStyle(color: theme.hintColor),
-                labelStyle: theme.inputDecorationTheme.labelStyle,
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.zero,
-                  borderSide: BorderSide(color:  Colors.transparent, width: 1), // Borde cuando está lleno
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.zero,
-                  borderSide: BorderSide(color: AppColors.borderFilled, width: 1), // Borde cuando tiene foco
-                ),
-                contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-              ),
-            );
-          },
-        );
-      },
+class _LoginTextFieldState extends State<LoginTextField> {
+
+  @override
+  Widget build(BuildContext context) {
+    Widget? finalSuffixIcon = widget.suffixIcon;
+    
+   
+
+    return CustomTextField(
+      label: widget.label,
+      obscureText: widget.obscureText,
+      controller: widget.controller,
+      isError: widget.isError,
+      errorText: widget.errorText,
+      suffixIcon: finalSuffixIcon,
     );
   }
 }

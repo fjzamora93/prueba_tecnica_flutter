@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pruebakidsandclouds/core/theme/app_colors.dart';
 import 'package:pruebakidsandclouds/generated/l10n.dart';
 
 class PrimaryButton extends StatelessWidget {
@@ -10,7 +11,7 @@ class PrimaryButton extends StatelessWidget {
     super.key,
     this.onPressed,
     this.text,
-    this.color,
+    this.color = AppColors.primary,
   });
 
   @override
