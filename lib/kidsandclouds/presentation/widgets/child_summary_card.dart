@@ -3,7 +3,6 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:pruebakidsandclouds/core/theme/app_colors.dart';
-import 'package:pruebakidsandclouds/core/helper/responsive_helper.dart';
 import 'package:pruebakidsandclouds/core/widgets/default_card.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/data/models/child.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/presentation/widgets/child_name.dart';
@@ -28,19 +27,17 @@ class ChildSummaryCard extends StatelessWidget {
     final int weeklyEvents = Random().nextInt(25) + 15; 
     final String lastActivity = _getRandomActivity();
     final String mood = _getRandomMood();
-    final isDesktop = ResponsiveHelper.isDesktop(context);
 
     return Padding(
-      padding: EdgeInsets.symmetric(
-        vertical: ResponsiveHelper.responsiveValue(context, mobile: 10.0, desktop: 12.0),
-        horizontal: ResponsiveHelper.responsiveValue(context, mobile: 8.0, desktop: 12.0),
-      ),
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
       child: DefaultCard(
         onTap: onTap,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: ResponsiveHelper.responsiveValue(context, mobile: 12.0, desktop: 16.0)),
+  
+            
+            const SizedBox(height: 12),
 
             // Información principal del niño
             Row(
@@ -51,16 +48,13 @@ class ChildSummaryCard extends StatelessWidget {
                   children: [
                     ImageThumbnail(
                       imageUrl: child.picture.thumbnail,
-                      size: ResponsiveHelper.responsiveValue(context, mobile: 60.0, desktop: 80.0),
+                      size: 60,
                       isCircular: true,
                     ),
-                    SizedBox(height: ResponsiveHelper.responsiveValue(context, mobile: 8.0, desktop: 10.0)),
+                    const SizedBox(height: 8),
                     // Estado de ánimo
                     Container(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: ResponsiveHelper.responsiveValue(context, mobile: 6.0, desktop: 8.0),
-                        vertical: ResponsiveHelper.responsiveValue(context, mobile: 2.0, desktop: 4.0),
-                      ),
+                      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                       decoration: BoxDecoration(
                         color: _getMoodColor(mood).withOpacity(0.1),
                         borderRadius: BorderRadius.circular(8),
@@ -69,83 +63,65 @@ class ChildSummaryCard extends StatelessWidget {
                         mood,
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           color: _getMoodColor(mood),
-                          fontSize: ResponsiveHelper.responsiveValue(context, mobile: 10.0, desktop: 11.0),
+                          fontSize: 10,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
                     ),
                   ],
                 ),
-                SizedBox(width: ResponsiveHelper.responsiveValue(context, mobile: 16.0, desktop: 20.0)),
+                const SizedBox(width: 16),
                 
                 // Información del niño
                 Expanded(
-                  child: _buildChildInfo(context, isDesktop, todayActivities, weeklyEvents, lastActivity),
-                ),
-              ],
-            ),
-            
-            if (summarize) ...[
-              SizedBox(height: ResponsiveHelper.responsiveValue(context, mobile: 16.0, desktop: 20.0)),
-              _buildSummarySection(context, isDesktop, todayActivities, weeklyEvents, lastActivity),
-            ],
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildChildInfo(BuildContext context, bool isDesktop, int todayActivities, int weeklyEvents, String lastActivity) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        // Nombre del niño
-        ChildName(
-          firstName: child.firstName,
-          lastName: child.lastName,
-          title: "",
-        ),
-        
-        SizedBox(height: ResponsiveHelper.responsiveValue(context, mobile: 8.0, desktop: 10.0)),
-        
-        // Edad
-        Row(
-          children: [
-            Icon(
-              Icons.cake_outlined,
-              size: ResponsiveHelper.responsiveValue(context, mobile: 16.0, desktop: 18.0),
-              color: AppColors.textSecondary,
-            ),
-            SizedBox(width: ResponsiveHelper.responsiveValue(context, mobile: 4.0, desktop: 6.0)),
-            Text(
-              '${child.age} años',
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: AppColors.textSecondary,
-                fontSize: ResponsiveHelper.responsiveValue(context, mobile: 12.0, desktop: 14.0),
-              ),
-            ),
-          ],
-        ),
-        
-        SizedBox(height: ResponsiveHelper.responsiveValue(context, mobile: 4.0, desktop: 6.0)),
-        
-        // Última actividad
-        Row(
-          children: [
-            Icon(
-              Icons.access_time,
-              size: ResponsiveHelper.responsiveValue(context, mobile: 16.0, desktop: 18.0),
-              color: AppColors.textSecondary,
-            ),
-            SizedBox(width: ResponsiveHelper.responsiveValue(context, mobile: 4.0, desktop: 6.0)),
-            Expanded(
-              child: Text(
-                'Última: $lastActivity',
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppColors.textSecondary,
-                  fontSize: ResponsiveHelper.responsiveValue(context, mobile: 12.0, desktop: 14.0),
-                ),
-                overflow: TextOverflow.ellipsis,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Nombre del niño
+                      ChildName(
+                        firstName: child.firstName,
+                        lastName: child.lastName,
+                        title: "",
+                      ),
+                      
+                      const SizedBox(height: 8),
+                      
+                      // Edad
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.cake_outlined,
+                            size: 16,
+                            color: AppColors.textSecondary,
+                          ),
+                          const SizedBox(width: 4),
+                          Text(
+                            '${child.age} años',
+                            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                              color: AppColors.textSecondary,
+                            ),
+                          ),
+                        ],
+                      ),
+                      
+                      const SizedBox(height: 4),
+                      
+                      // Última actividad
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.access_time,
+                            size: 16,
+                            color: AppColors.textSecondary,
+                          ),
+                          const SizedBox(width: 4),
+                          Expanded(
+                            child: Text(
+                              'Última: $lastActivity',
+                              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                color: AppColors.textSecondary,
+                              ),
+                              overflow: TextOverflow.ellipsis,
                             ),
                           ),
                         ],
