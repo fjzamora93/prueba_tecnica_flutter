@@ -7,6 +7,7 @@ import 'package:pruebakidsandclouds/core/theme/app_colors.dart';
 import 'package:pruebakidsandclouds/core/theme/theme.dart';
 import 'package:pruebakidsandclouds/core/widgets/menu_card.dart';
 import 'package:pruebakidsandclouds/generated/l10n.dart';
+import 'package:pruebakidsandclouds/core/widgets/primary_button.dart';
 import 'package:pruebakidsandclouds/core/widgets/primary_scaffold.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/presentation/providers/auth_provider.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/presentation/widgets/profile_card.dart';

@@ -13,3 +13,4 @@ final authApiServiceProvider = Provider<AuthApiService>((ref) {
   final dio = ref.watch(dioProvider);
   return AuthApiService(dio);
 });
+

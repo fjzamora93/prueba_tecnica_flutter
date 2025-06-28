@@ -49,7 +49,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "noData": MessageLookupByLibrary.simpleMessage("No hay datos disponibles"),
     "password": MessageLookupByLibrary.simpleMessage("Contraseña"),
     "phone": MessageLookupByLibrary.simpleMessage("Teléfono"),
-    "profile": MessageLookupByLibrary.simpleMessage("PErfil"),
+    "profile": MessageLookupByLibrary.simpleMessage("Perfil"),
     "refresh": MessageLookupByLibrary.simpleMessage("Actualizar"),
     "selectLanguage": MessageLookupByLibrary.simpleMessage(
       "Seleccionar Idioma",
