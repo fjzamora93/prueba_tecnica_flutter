@@ -31,9 +31,9 @@
   "splash1Title": "Welcome to Kids & Clouds",
   "splash2Title": "Manage your children's data",
   "splash3Title": "Enjoy a safe and fun environment for your kids",
-  "splash1Subtitle": "Your children's data is safe with us",
-  "splash2Subtitle": "Easily manage and track your children's activities",
-  "splash3Subtitle": "A secure and fun space for your children to learn and play",
+ "splash1Subtitle": "Your children's data is completely safe and protected with us. We prioritize privacy and security to give you peace of mind.",
+  "splash2Subtitle": "Easily manage and track your children's daily activities with our intuitive tools. Stay updated and engaged with their progress every step of the way.",
+  "splash3Subtitle": "A secure and fun space where your children can learn, play, and grow. We provide a safe environment that fosters creativity and development.",
 
   "youHave": "You have",
   "children": "children",
@@ -49,7 +49,11 @@
 
   "personalInfo": "Personal Information",
   "telephone": "Legal Guardian's Phone",
-  "gender": "Gender"
+  "gender": "Gender",
+
+   "configuration": "Settings",
+  "activity": "Activity",
+  "general": "General"
   
 
 }

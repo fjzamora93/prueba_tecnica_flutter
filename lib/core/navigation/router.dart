@@ -2,12 +2,12 @@
 
 import 'package:go_router/go_router.dart';
 import 'package:pruebakidsandclouds/core/navigation/app_routes.dart';
-import 'package:pruebakidsandclouds/kidsandclouds/presentation/view/child_detail_screen.dart';
-import 'package:pruebakidsandclouds/kidsandclouds/presentation/view/children_list_screen.dart';
-import 'package:pruebakidsandclouds/kidsandclouds/presentation/view/daily_journal_screen.dart';
-import 'package:pruebakidsandclouds/kidsandclouds/presentation/view/home_screen.dart';
-import 'package:pruebakidsandclouds/kidsandclouds/presentation/view/login_screen.dart';
-import 'package:pruebakidsandclouds/kidsandclouds/presentation/view/profile_screen.dart';
+import 'package:pruebakidsandclouds/kidsandclouds/presentation/screens/child_detail_screen.dart';
+import 'package:pruebakidsandclouds/kidsandclouds/presentation/screens/children_list_screen.dart';
+import 'package:pruebakidsandclouds/kidsandclouds/presentation/screens/daily_journal_screen.dart';
+import 'package:pruebakidsandclouds/kidsandclouds/presentation/screens/home_screen.dart';
+import 'package:pruebakidsandclouds/kidsandclouds/presentation/screens/login_screen.dart';
+import 'package:pruebakidsandclouds/kidsandclouds/presentation/screens/profile_screen.dart';
 
 GoRouter appRouter() => GoRouter(
   initialLocation: AppRoutes.login,
@@ -44,7 +44,6 @@ GoRouter appRouter() => GoRouter(
       builder: (context, state) {
         final id = state.pathParameters['id'];
         if (id == null || id.isEmpty) {
-          // Si no hay ID válido, redirigir a la lista de niños
           return const ChildrenListScreen();
         }
         return ChildDetailScreen(childId: id);

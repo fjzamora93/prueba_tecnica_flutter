@@ -219,30 +219,30 @@ class S {
     );
   }
 
-  /// `Your children's data is safe with us`
+  /// `Your children's data is completely safe and protected with us. We prioritize privacy and security to give you peace of mind.`
   String get splash1Subtitle {
     return Intl.message(
-      'Your children\'s data is safe with us',
+      'Your children\'s data is completely safe and protected with us. We prioritize privacy and security to give you peace of mind.',
       name: 'splash1Subtitle',
       desc: '',
       args: [],
     );
   }
 
-  /// `Easily manage and track your children's activities`
+  /// `Easily manage and track your children's daily activities with our intuitive tools. Stay updated and engaged with their progress every step of the way.`
   String get splash2Subtitle {
     return Intl.message(
-      'Easily manage and track your children\'s activities',
+      'Easily manage and track your children\'s daily activities with our intuitive tools. Stay updated and engaged with their progress every step of the way.',
       name: 'splash2Subtitle',
       desc: '',
       args: [],
     );
   }
 
-  /// `A secure and fun space for your children to learn and play`
+  /// `A secure and fun space where your children can learn, play, and grow. We provide a safe environment that fosters creativity and development.`
   String get splash3Subtitle {
     return Intl.message(
-      'A secure and fun space for your children to learn and play',
+      'A secure and fun space where your children can learn, play, and grow. We provide a safe environment that fosters creativity and development.',
       name: 'splash3Subtitle',
       desc: '',
       args: [],
@@ -317,6 +317,21 @@ class S {
   /// `Gender`
   String get gender {
     return Intl.message('Gender', name: 'gender', desc: '', args: []);
+  }
+
+  /// `Settings`
+  String get configuration {
+    return Intl.message('Settings', name: 'configuration', desc: '', args: []);
+  }
+
+  /// `Activity`
+  String get activity {
+    return Intl.message('Activity', name: 'activity', desc: '', args: []);
+  }
+
+  /// `General`
+  String get general {
+    return Intl.message('General', name: 'general', desc: '', args: []);
   }
 }
 

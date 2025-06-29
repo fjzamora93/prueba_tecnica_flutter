@@ -59,19 +59,19 @@ class AppTextStyles {
 
   // Estilos específicos adicionales si necesitas
   static final TextStyle heading1 = GoogleFonts.mulish(
-    fontSize: 32,
+    fontSize: 26,
     fontWeight: FontWeight.bold,
     color: AppColors.black,
   );
 
   static final TextStyle heading2 = GoogleFonts.mulish(
-    fontSize: 28,
+    fontSize: 20,
     fontWeight: FontWeight.bold,
     color: AppColors.textPrimary,
   );
 
   static final TextStyle subtitle = GoogleFonts.mulish(
-    fontSize: 25,
+    fontSize: 18,
     color: AppColors.textSubtitle,
   );
 

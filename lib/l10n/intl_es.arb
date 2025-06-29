@@ -31,9 +31,9 @@
   "splash1Title": "Bienvenido Kids & Clouds",
   "splash2Title": "Gestiona los datos de tus hijos",
   "splash3Title": "Disfruta de un entorno seguro y divertido para tus hijos",
-  "splash1Subtitle": "Los datos de tus hijos están seguros con nosotros",
-  "splash2Subtitle": "Fácil gestión y seguimiento de las actividades de tus hijos",
-  "splash3Subtitle": "Un espacio seguro y divertido para que tus hijos aprendan y jueguen",
+ "splash1Subtitle": "Los datos de tus hijos están completamente seguros y protegidos con nosotros. Priorizamos la privacidad y seguridad para brindarte tranquilidad.",
+  "splash2Subtitle": "Gestiona y sigue fácilmente las actividades diarias de tus hijos con nuestras herramientas intuitivas. Mantente al tanto y participa en cada paso de su progreso.",
+  "splash3Subtitle": "Un espacio seguro y divertido donde tus hijos pueden aprender, jugar y crecer. Ofrecemos un entorno protegido que fomenta la creatividad y el desarrollo.",
 
   "youHave": "Usted tiene",
   "children": "niños",
@@ -48,6 +48,11 @@
   
     "personalInfo": "Información Personal",
   "telephone": "Teléfono del Tutor Legal",
-  "gender": "Género"
+  "gender": "Género",
+
+
+  "configuration": "Configuración",
+  "activity": "Actividad",
+  "general": "General"
 
 }

@@ -8,6 +8,7 @@ import 'package:pruebakidsandclouds/core/widgets/custom_loading_indicator.dart';
 import 'package:pruebakidsandclouds/core/widgets/error_state_widget.dart';
 import 'package:pruebakidsandclouds/generated/l10n.dart';
 import 'package:pruebakidsandclouds/core/widgets/primary_scaffold.dart';
+import 'package:pruebakidsandclouds/kidsandclouds/presentation/providers/child_detail.provider.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/presentation/providers/children_list_provider.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/presentation/widgets/child_summary_card.dart';
 
@@ -95,7 +96,10 @@ class _ChildrenListScreen extends ConsumerState<ChildrenListScreen> {
           final child = childrenList[index];
           return ChildSummaryCard(
             child: child,
-            onTap: () =>   context.push('${AppRoutes.childDetail}/${child.idValue}'),
+            onTap: () =>   {
+              ref.read(childDetailProvider.notifier).setChild(child),
+              context.push('${AppRoutes.childDetail}/${child.idValue}')
+              },
             summarize: false, 
           );
         },
@@ -115,7 +119,10 @@ class _ChildrenListScreen extends ConsumerState<ChildrenListScreen> {
               ),
               child: ChildSummaryCard(
                 child: child,
-                 onTap: () =>   context.push('${AppRoutes.childDetail}/${child.idValue}'),
+                 onTap: () =>   {
+              ref.read(childDetailProvider.notifier).setChild(child),
+              context.push('${AppRoutes.childDetail}/${child.idValue}')
+              },
                 summarize: false,
               ),
             );

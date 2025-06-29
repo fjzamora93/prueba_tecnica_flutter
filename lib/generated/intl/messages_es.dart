@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "activity": MessageLookupByLibrary.simpleMessage("Actividad"),
     "appSubtitle": MessageLookupByLibrary.simpleMessage(
       "Aplicación de gestión de niños",
     ),
@@ -31,6 +32,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "children": MessageLookupByLibrary.simpleMessage("niños"),
     "childrenList": MessageLookupByLibrary.simpleMessage("Lista de Niños"),
     "city": MessageLookupByLibrary.simpleMessage("Ciudad"),
+    "configuration": MessageLookupByLibrary.simpleMessage("Configuración"),
     "confirm": MessageLookupByLibrary.simpleMessage("Confirmar"),
     "continueText": MessageLookupByLibrary.simpleMessage("Continuar"),
     "country": MessageLookupByLibrary.simpleMessage("País"),
@@ -38,6 +40,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "email": MessageLookupByLibrary.simpleMessage("Correo"),
     "error": MessageLookupByLibrary.simpleMessage("Ocurrió un error"),
     "gender": MessageLookupByLibrary.simpleMessage("Género"),
+    "general": MessageLookupByLibrary.simpleMessage("General"),
     "home": MessageLookupByLibrary.simpleMessage("Home"),
     "language": MessageLookupByLibrary.simpleMessage("Idioma"),
     "list": MessageLookupByLibrary.simpleMessage("Listado"),
@@ -59,19 +62,19 @@ class MessageLookup extends MessageLookupByLibrary {
       "Seleccionar Idioma",
     ),
     "splash1Subtitle": MessageLookupByLibrary.simpleMessage(
-      "Los datos de tus hijos están seguros con nosotros",
+      "Los datos de tus hijos están completamente seguros y protegidos con nosotros. Priorizamos la privacidad y seguridad para brindarte tranquilidad.",
     ),
     "splash1Title": MessageLookupByLibrary.simpleMessage(
       "Bienvenido Kids & Clouds",
     ),
     "splash2Subtitle": MessageLookupByLibrary.simpleMessage(
-      "Fácil gestión y seguimiento de las actividades de tus hijos",
+      "Gestiona y sigue fácilmente las actividades diarias de tus hijos con nuestras herramientas intuitivas. Mantente al tanto y participa en cada paso de su progreso.",
     ),
     "splash2Title": MessageLookupByLibrary.simpleMessage(
       "Gestiona los datos de tus hijos",
     ),
     "splash3Subtitle": MessageLookupByLibrary.simpleMessage(
-      "Un espacio seguro y divertido para que tus hijos aprendan y jueguen",
+      "Un espacio seguro y divertido donde tus hijos pueden aprender, jugar y crecer. Ofrecemos un entorno protegido que fomenta la creatividad y el desarrollo.",
     ),
     "splash3Title": MessageLookupByLibrary.simpleMessage(
       "Disfruta de un entorno seguro y divertido para tus hijos",
