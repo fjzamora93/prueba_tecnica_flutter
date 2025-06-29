@@ -39,6 +39,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "diary": MessageLookupByLibrary.simpleMessage("Daily Journal"),
     "email": MessageLookupByLibrary.simpleMessage("Email"),
     "error": MessageLookupByLibrary.simpleMessage("An error occurred"),
+    "findChildrenByName": MessageLookupByLibrary.simpleMessage(
+      "Find children by name",
+    ),
     "gender": MessageLookupByLibrary.simpleMessage("Gender"),
     "general": MessageLookupByLibrary.simpleMessage("General"),
     "home": MessageLookupByLibrary.simpleMessage("Home"),
@@ -51,6 +54,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "logoutButton": MessageLookupByLibrary.simpleMessage("Logout"),
     "name": MessageLookupByLibrary.simpleMessage("Name"),
     "noData": MessageLookupByLibrary.simpleMessage("No data available"),
+    "noResultsFound": MessageLookupByLibrary.simpleMessage("No results found"),
     "password": MessageLookupByLibrary.simpleMessage("password"),
     "personalInfo": MessageLookupByLibrary.simpleMessage(
       "Personal Information",

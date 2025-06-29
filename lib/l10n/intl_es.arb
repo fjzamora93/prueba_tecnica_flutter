@@ -53,6 +53,8 @@
 
   "configuration": "Configuración",
   "activity": "Actividad",
-  "general": "General"
+  "general": "General",
 
+  "findChildrenByName": "Buscar niños por nombre",
+  "noResultsFound": "No se encontraron resultados"
 }

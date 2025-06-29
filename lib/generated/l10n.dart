@@ -333,6 +333,26 @@ class S {
   String get general {
     return Intl.message('General', name: 'general', desc: '', args: []);
   }
+
+  /// `Find children by name`
+  String get findChildrenByName {
+    return Intl.message(
+      'Find children by name',
+      name: 'findChildrenByName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No results found`
+  String get noResultsFound {
+    return Intl.message(
+      'No results found',
+      name: 'noResultsFound',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

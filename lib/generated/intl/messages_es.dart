@@ -39,6 +39,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "diary": MessageLookupByLibrary.simpleMessage("Agenda Diaria"),
     "email": MessageLookupByLibrary.simpleMessage("Correo"),
     "error": MessageLookupByLibrary.simpleMessage("Ocurrió un error"),
+    "findChildrenByName": MessageLookupByLibrary.simpleMessage(
+      "Buscar niños por nombre",
+    ),
     "gender": MessageLookupByLibrary.simpleMessage("Género"),
     "general": MessageLookupByLibrary.simpleMessage("General"),
     "home": MessageLookupByLibrary.simpleMessage("Home"),
@@ -51,6 +54,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "logoutButton": MessageLookupByLibrary.simpleMessage("Cerrar Sesión"),
     "name": MessageLookupByLibrary.simpleMessage("Nombre"),
     "noData": MessageLookupByLibrary.simpleMessage("No hay datos disponibles"),
+    "noResultsFound": MessageLookupByLibrary.simpleMessage(
+      "No se encontraron resultados",
+    ),
     "password": MessageLookupByLibrary.simpleMessage("Contraseña"),
     "personalInfo": MessageLookupByLibrary.simpleMessage(
       "Información Personal",

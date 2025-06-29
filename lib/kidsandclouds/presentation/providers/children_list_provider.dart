@@ -1,5 +1,3 @@
-
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pruebakidsandclouds/core/di/usecase_module.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/data/models/child.dart';
@@ -8,6 +6,31 @@ import 'package:pruebakidsandclouds/kidsandclouds/domain/usecase/child_usecase.d
 final childrenListProvider = AsyncNotifierProvider<ChildrenNotifier, List<Child>>(
   ChildrenNotifier.new,
 );
+
+final searchQueryProvider = StateProvider<String>((ref) => '');
+
+
+final filteredChildrenProvider = Provider<AsyncValue<List<Child>>>((ref) {
+  final childrenAsync = ref.watch(childrenListProvider);
+  final searchQuery = ref.watch(searchQueryProvider);
+  
+  return childrenAsync.when(
+    data: (children) {
+      if (searchQuery.isEmpty) {
+        return AsyncValue.data(children);
+      }
+      
+      final filteredChildren = children.where((child) {
+        final fullName = '${child.name['first'] ?? ''} ${child.name['last'] ?? ''}'.toLowerCase();
+        return fullName.contains(searchQuery.toLowerCase());
+      }).toList();
+      
+      return AsyncValue.data(filteredChildren);
+    },
+    loading: () => const AsyncValue.loading(),
+    error: (error, stack) => AsyncValue.error(error, stack),
+  );
+});
 
 class ChildrenNotifier extends AsyncNotifier<List<Child>> {
 
@@ -48,6 +71,27 @@ class ChildrenNotifier extends AsyncNotifier<List<Child>> {
     return currentChildren.where((child) => 
       child.idValue == id 
     ).firstOrNull;
+  }
+
+  //  Método para obtener niños filtrados localmente
+  List<Child> getFilteredChildren(String searchQuery) {
+    final currentChildren = state.value ?? [];
+    
+    if (searchQuery.isEmpty) {
+      return currentChildren;
+    }
+    
+    return currentChildren.where((child) {
+      final fullName = '${child.name['first'] ?? ''} ${child.name['last'] ?? ''}'.toLowerCase();
+      final email = child.email.toLowerCase();
+      final phone = child.phone.toLowerCase();
+      
+      final query = searchQuery.toLowerCase();
+      
+      return fullName.contains(query) || 
+             email.contains(query) || 
+             phone.contains(query);
+    }).toList();
   }
     
 }

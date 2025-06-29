@@ -5,7 +5,9 @@ import 'package:pruebakidsandclouds/core/navigation/app_routes.dart';
 import 'package:pruebakidsandclouds/core/theme/theme.dart';
 import 'package:pruebakidsandclouds/core/helper/responsive_helper.dart';
 import 'package:pruebakidsandclouds/core/widgets/custom_loading_indicator.dart';
+import 'package:pruebakidsandclouds/core/widgets/custom_subtitle.dart';
 import 'package:pruebakidsandclouds/core/widgets/error_state_widget.dart';
+import 'package:pruebakidsandclouds/core/widgets/search_bar.dart';
 import 'package:pruebakidsandclouds/generated/l10n.dart';
 import 'package:pruebakidsandclouds/core/widgets/primary_scaffold.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/presentation/providers/child_detail.provider.dart';
@@ -32,7 +34,7 @@ class _ChildrenListScreen extends ConsumerState<ChildrenListScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final childrenListState = ref.watch(childrenListProvider);
+    final filteredChildrenState = ref.watch(filteredChildrenProvider);
 
     return PrimaryScaffold(
       appBar: AppBar(
@@ -41,7 +43,7 @@ class _ChildrenListScreen extends ConsumerState<ChildrenListScreen> {
         foregroundColor: AppColors.white,
       ),
       children: [
-        childrenListState.when(
+        filteredChildrenState.when(
           loading: () => CustomLoadingIndicator(),
           error: (error, _) => ErrorStateWidget(
             errorMessage: S.of(context).error,
@@ -55,18 +57,37 @@ class _ChildrenListScreen extends ConsumerState<ChildrenListScreen> {
   }
 
   Widget _buildChildrenList(BuildContext context, List childrenList) {
+    final allChildren = ref.watch(childrenListProvider).value ?? [];
+    final searchQuery = ref.watch(searchQueryProvider);
+    
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(height: ResponsiveHelper.responsiveValue(context, mobile: 16.0, desktop: 24.0)),
         
         Text(
-          '${S.of(context).youHave} ${childrenList.length} ${S.of(context).children} ',
+          '${S.of(context).youHave} ${allChildren.length} ${S.of(context).children} ',
           style: AppTextStyles.caption
         ),
         
         SizedBox(height: ResponsiveHelper.responsiveValue(context, mobile: 16.0, desktop: 24.0)),
+
+        CustomSearchBar(
+          hintText: S.of(context).findChildrenByName,
+          onChanged: (value) {
+            ref.read(searchQueryProvider.notifier).state = value;
+          },
+          onClear: () {
+            ref.read(searchQueryProvider.notifier).state = '';
+          },
+        ),
         
+        SizedBox(height: ResponsiveHelper.responsiveValue(context, mobile: 16.0, desktop: 24.0)),
+        
+        // Mostrar resultados de búsqueda
+        if (searchQuery.isNotEmpty)
+            CustomSubtitle(S.of(context).noResultsFound),
+   
         // Children list with responsive layout
         _buildResponsiveChildrenList(context, childrenList),
       ],

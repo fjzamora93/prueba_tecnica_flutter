@@ -39,8 +39,10 @@ Arquitectura base del proyecto (MVVM) separado en:
 
 
 - **data**: Representa nuestra estructura de datos y la conexión a la API. En este caso, y siguiendo las convenciones de Flutter, Kotlin y desarrollo para mobile, utilizamos la capa de 'services' para lanzar las peticiones de https. Mientras que usamos los repositories para la obtención de datos (por ejemplo, en nuestro caso hay datos que obtenemos de ficheros json).
+  
 - **domain**: En este caso puede estar añadiendo una capa de complejidad innecesaria a la arquitectura, ya que apenas hay reglas de uso en la aplicación (aunque se aplican en un par de ocasiones para filtrar los datos). Por su parte, utilizamos interfaces para los repositories y así asegurarnos de que en cualquier momento nuestros casos de uso pueden cambiar la fuente de datos sin comprometer el funcionamiento de la aplicación.
-- **presentation**: capa visual, con las pantallas (screens), componentes reutilizables (widgets) y gestores de estado (provider).
+  
+- **presentation**: capa visual, con las pantallas (screens), componentes reutilizables (widgets) y gestores de estado (provider). 
 
 
 ## Librerías utilizadas
@@ -61,6 +63,36 @@ Para el proyecto se han utilizado las siguientes librerías:
 Además, se utilizan interceptos para simplificar las peticiones https y añadir encabezados personalizados (como por ejemplo, el access token que habíamos recuperado de la APi). Sin entrar en mucho detalle, guardamos el token en el Secure Storage y a partir de ahí queda añadido automáticamente. También aprovechamos para guardar algunas constantes como la baseUrl.
 
 
+# Presentación
+
+Visualmente, la aplicación se compone de un total de 6 pantallas:
+
+- Login
+- Home (que en realidad funcionaría como un Splash).
+- Lista de eventos.
+- Children List
+- Child Detail
+- Settings
+
+Todas las pantallas se han hecho responsive. La estrategia en este caso ha sido adaptar los widgets a un tipo de pantalla u otra dependiendo del contexto de la aplicación, manteniendo siempre una parte común para cada pantalla (generlamente los títulos y el scaffold principal), y cambiar la "parte variable" (es decir, de qué manera se muestran las listas de items). Más concretamente, se ha apostado por un grid para la versión desktop y por una lista simple para la versión mobile. 
+
+### Pantallas versión móvil
+
+![Mobile](./screenshots/mobile_1.png)
+![Mobile](./screenshots/mobile_2.png)
+
+Igualmente, se han hecho ciertas mejoras visuales sobre los requerimentos originales del ejercicio. Por ejemplo, en lugar de utilizar un selector desplegable para seleccionar un hijo, se ha optado por una barra de búsqueda que permite filtrar a través del provider.
+
+Otras mejoras incluyen una bottomBar, una appBar (con opción de abrir el drawer) y una navegación completa que permite no solo navegar hacia adelante, sino hacer pop hacia atrás.
+
+
+### Pantallas versión web
+
+![Destkop screenshots](./screenshots/desktop-children.png)
+![Destkop screenshots](./screenshots/events.png)
+![Destkop screenshots](./screenshots/splash.png)
+
+
 
 ## Tests unitarios (3 tests)
 
@@ -76,6 +108,19 @@ Para el test visual hemos seleccionado el widget EventCard. Aquí nuevamente moc
 
 
 # Uso de la aplicación
+
+El apk está generado directamente en la carpeta build/app/outputs/flutter-apk/app-release.apk
+
+Es posible instalarlo directamente en un dispositivo móvil (android) o en un emulador de la siguiente manera:
+
+```
+
+# Arrancar cualquiera de los emuladores instalados, luego ejecutar:
+
+adb install build/app/outputs/flutter-apk/app-release.apk
+adb shell am start -n com.example.pruebakidsandclouds/.MainActivity
+```
+
 
 ## Login
 
@@ -111,8 +156,6 @@ password: 'sophiabpass'
 - **Google Chrome** (para testing web)
 
 
-
-
 ### 1. Verificar instalación de Flutter
 ```bash
 flutter doctor
@@ -138,9 +181,6 @@ flutter run -d [DEVICE_ID]
 
 # Ejecutar en Chrome
 flutter run -d chrome
-
-# O en servidor web local
-flutter run -d web-server
 
 ```
 

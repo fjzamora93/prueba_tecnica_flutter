@@ -53,7 +53,10 @@
 
    "configuration": "Settings",
   "activity": "Activity",
-  "general": "General"
+  "general": "General",
+
+  "findChildrenByName": "Find children by name",
+  "noResultsFound": "No results found"
   
 
 }
