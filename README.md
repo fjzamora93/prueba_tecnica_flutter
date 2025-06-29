@@ -3,8 +3,7 @@
 Una aplicación Flutter responsive para la gestión y seguimiento del cuidado infantil, disponible tanto para dispositivos móviles como para web.
 
 
-
-## Arquitectura
+## Arquitectura de la aplicación
 
 Arquitectura base del proyecto (MVVM) separado en:
 
@@ -76,6 +75,30 @@ En el caso de EventRepository testamos los dos métodos disponibles (obtener tod
 Para el test visual hemos seleccionado el widget EventCard. Aquí nuevamente mockeamos un evento que vamos a psar como parámetro al widget y utilizamos pumpWidget para simular la renderización de dicho componente. Acto seguido, comenzamos el test y "recorremos" el widget completo buscando las palabras clave que nos interesa y que deberían estar dentro del evento mockeado anteriormente.
 
 
+# Uso de la aplicación
+
+## Login
+
+Para hacer login en la aplicación basta con usar algunas de las credenciales válidas de la API gratuita dummyjson:
+
+- https://dummyjson.com/docs/auth
+
+
+Se puede usar la credencial que viene hardcodeada dentro de la aplicación o emplear cualquiera de las que facilita la API en este enlace: https://dummyjson.com/users
+
+**Por ejemplo**
+
+```
+ username: 'emilys'
+ password: 'emilyspass'
+
+
+username: 'sophiab'
+password: 'sophiabpass'
+
+```
+
+
 #  Instalación
 
 ## Requisitos previos
@@ -87,7 +110,8 @@ Para el test visual hemos seleccionado el widget EventCard. Aquí nuevamente moc
 ### Para desarrollo web:
 - **Google Chrome** (para testing web)
 
-##  Instalación
+
+
 
 ### 1. Verificar instalación de Flutter
 ```bash
