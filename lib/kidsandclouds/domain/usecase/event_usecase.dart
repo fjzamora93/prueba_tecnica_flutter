@@ -1,5 +1,5 @@
 import 'package:pruebakidsandclouds/kidsandclouds/data/models/event.dart';
-import 'package:pruebakidsandclouds/kidsandclouds/data/repositories/event_repository.dart';
+import 'package:pruebakidsandclouds/kidsandclouds/domain/repository/event_repository.dart';
 
 class EventUsecase {
   final EventRepository repository;

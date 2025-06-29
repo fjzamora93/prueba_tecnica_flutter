@@ -1,102 +1,137 @@
-# pruebakidsandclouds
+# Prueba Técnica Kids & Clouds
 
-Arquitectura base del proyecto: 
+Una aplicación Flutter responsive para la gestión y seguimiento del cuidado infantil, disponible tanto para dispositivos móviles como para web.
+
+
+
+## Arquitectura
+
+Arquitectura base del proyecto (MVVM) separado en:
+
+- **core:** para los elementos comunes de toda la aplicación.
+- **feature:** En este tenemos una feature única llamada kidsandclouds. Aunque en un proyecto de mayor tamaño podríamos haber creado varias features (por ejemplo: auth, kids, journal...).
 
 ```
 /lib
 ├── core/
 │   ├── theme/
-│   ├── navigation/
-│   ├── exceptions/
 │   ├── helper/
-│   └── di/            # inyección de dependencias
-├── data/
-│   ├── datasources/        # Clases que consumen APIs o fuentes de datos
-│   ├── models/             # Modelos que representan los datos crudos
-│   └── repositories_impl/  # Implementación de repositorios
+│   ├── navigation/
+│   ├── providers/
+│   ├── theme/
+│   ├── widgets/
+│   └── di/           	    # inyección de dependencias (para tener más limpio el código)
+├── kidsandclouds/
+│   ├── models/        
+│   ├── services/             
+│   └── repositories/ 
 ├── domain/
-│   ├── entities/           # Entidades puras, independientes del framework
-│   ├── repositories/       # Interfaces abstractas para los repositorios
 │   └── usecases/           # Lógica de negocio
 ├── presentation/
 │   ├── providers/          # Riverpod providers
-│   ├── pages/              # Pantallas
+│   ├── view/               # Pantallas
 │   └── widgets/            # Componentes reutilizables
 └── main.dart
 ```
 
+En este caso, la capa de "useCase" es prescindible, ya que al tener datos mockeados no hay mucha lógica de negocio que aplicar. Aún así, la hemos utilizado para convertir los datos que llegan de la Api a algo que cuadre con la aplicación (por ejemplo, convertir la edad a un número entre 1 y 5).
 
-# Retrofit.dart
 
-La combinación de Retrofit y Dio permite realizar peticiones https de una manera mucho más segura (provocando menos errores), ya que automatiza el proceso a través de una clase abstracta que realiza toda la petición por nosotros. Para que funcione, únicamente hay que declarar las siguietnes clases:
-- El servicio que nos interese (api_service.dart)
-- El modelo correspondiente a dicho servicio.
+## Librerías utilizadas
 
-LUego de crearlos, se debe ejecutar el siguiente comando:
+Para el proyecto se han utilizado las siguientes librerías:
+
+
+- **goRouter:** Para la navegación dentro de la aplicación. 
+- **Riverpod:** Como provider y para el sistema de inyección de dependencias. 
+- **Intl:** Para poder cambiar de idioma. 
+- **Flutter Secure Storage:**  Para guardar el access token y el refresh token (sí, recibimos un token de la Api de prueba).
+- **Json annotation:**  Nos facilita métodos para hacer las conversiones dentro de los modelos.
+- **Retrofit + Dio:** estas dos librerías combinadas hacen más legibles las peticiones a la API. Luego de hacer cualquier cambio en un modelo o el servicio, será necesario ejecutar este comando:
 
 ```
   flutter pub run build_runner build --delete-conflicting-outputs
 ```
-Este comando generará las clases análogas al servicio y el modelo y se llamarán como la clase original pero con la terminación .g.dart. A partir de ahí, realizar una petición será tan sencilo como esto:
 
-```flutter
+Además, se utilizan interceptos para simplificar las peticiones https y añadir encabezados personalizados (como por ejemplo, el access token que habíamos recuperado de la APi). Sin entrar en mucho detalle, guardamos el token en el Secure Storage y a partir de ahí queda añadido automáticamente. También aprovechamos para guardar algunas constantes como la baseUrl.
 
-part 'user_api_service.g.dart'; // Este archivo se generará
 
-@RestApi(baseUrl: "https://dummyjson.com")
-abstract class UserApiService {
-  factory UserApiService(Dio dio, {String baseUrl}) = _UserApiService;
 
-  @GET("/users/{id}")
-  Future<User> getUserById(@Path("id") String id);
+## Tests unitarios (3 tests)
 
-  @POST("/users")
-  Future<User> createUser(@Body() Map<String, dynamic> userJson);
+Para la realización de test unitarios hemos tomado dos referentes:
+- EventRepository.
+- EventCard.
 
-  @DELETE("/users/{id}")
-  Future<void> deleteUser(@Path("id") String id);
-}
+### Test lógico (repository)
+En el caso de EventRepository testamos los dos métodos disponibles (obtener todos los eventos y filtrarlos). Puesto que en el test no podemos acceder directamente a la carpeta assets, mockeamos un JSON desde el setUP. Una vez mockeado, ahora sí que es posible testar que los datos se están recibiendo o filtrando correctamente.  
+
+### Test visual (widget)
+Para el test visual hemos seleccionado el widget EventCard. Aquí nuevamente mockeamos un evento que vamos a psar como parámetro al widget y utilizamos pumpWidget para simular la renderización de dicho componente. Acto seguido, comenzamos el test y "recorremos" el widget completo buscando las palabras clave que nos interesa y que deberían estar dentro del evento mockeado anteriormente.
+
+
+#  Instalación
+
+## Requisitos previos
+
+### Flutter SDK
+- **Flutter 3.16.0 o superior**
+- **Dart 3.2.0 o superior**
+
+### Para desarrollo móvil:
+- **Android Studio** (para Android)
+- **Xcode** (para iOS - solo en macOS)
+
+### Para desarrollo web:
+- **Google Chrome** (para testing web)
+
+## 🚀 Instalación
+
+### 1. Verificar instalación de Flutter
+```bash
+flutter doctor
+
+# Clonar repositorio
+git clone [URL_DEL_REPOSITORIO]
+cd pruebakidsandclouds
+
+# isntalar dependencias
+flutter pub get
+
+#! IMPORTANTE: generar archivos de código
+dart run build_runner build --delete-conflicting-outputs
+
 ```
 
-# Tests
+### 2. Ejecución de dispositivos:
+
+```bash
+# Ver dispositivos disponibles
+flutter devices
+
+# Ejecutar en dispositivo conectado
+flutter run
+
+# O especificar dispositivo
+flutter run -d [DEVICE_ID]
+
+# Ejecutar en Chrome
+flutter run -d chrome
+
+# O en servidor web local
+flutter run -d web-server
 
 ```
-flutter test test/kidsandclouds/data/repositories/event_repository_test.dart
+
+### Generar APK
+
+```bash
+flutter build apk --release
 ```
 
+### Generar tests
 
+```bash
+flutter test
+```
 
-# Interceptores
-
-Para gestionar las solicitudes https se utilizan interceptores que están como dependencia en la capa de Services.
-
-Estos interceptores se encargan de inyectar directamente los headers necesarios a cada petición, y dentro es posible reconocer:
-- Tokens (extraidos de secure storage).
-- BaseUrl: url base para hacer llamadas a la API.
-
-Siguiendo este principio, podemos ver que las peticiones están completamente centralizadas, de tal forma que en caso de que cambiase la url de base bastaría con modificarla en el módulo de inyección de dependencias.
-
-Por su parte, si se quisiera modifica rel sistema para gestionar los tokens, bastaría con hacerlo desde los siguietnes ficheros:
-- authentication/security/token_storage.dart
-- authentication/security/auth_interceptor.dart
-
-
-# Logs de la aplicación
-
-Para optimizar el debugin y el sistema de logs de la aplicación en general se ha creado una clase Log (core/helper/log_helper.dart) que se encarga de gestionar los logs en modo kDebugMode. El sistema de logs puede llamarse desde cualquier parte de la aplicación y sigue el siguiente esquema:
-
-- **Log.e**: Logs de error.
-- **Log.d**: Logs de debug.
-- **Log.w**: Logs de warning.
-- **Log.i**: logs meramente informativos.
-- **Log.s**: logs de éxito.
-
-# Inyección de dependencias
-
-Las dependencias no se inyectan de forma manual, sino que están centralizadas en el directorio core/di. EL sistema de inyección de dependencias se maneja a través de Riverpod, de tal forma que no es necesario declarar variables o crear instancias. Siguiendo este principio, tampoco es necesario declarar variables globales para toda la aplicación ni propiedades estáticas.
-
-Como única excpeción, la inyección de dependencias relacionadas con la autentificación estarán encapsuladas dentro del módulo de auth (con el objetivo de poder reutilizar ese bloque de código completo en el futuro).
-
-# Api de muestra y dummy data
-
-- https://dummyjson.com

@@ -1,8 +1,9 @@
 
 import 'package:pruebakidsandclouds/kidsandclouds/data/models/child.dart';
-import 'package:pruebakidsandclouds/kidsandclouds/data/repositories/child_repository.dart';
 
 import 'dart:math';
+
+import 'package:pruebakidsandclouds/kidsandclouds/domain/repository/child_repository.dart';
 
 class ChildUsecase {
   final ChildRepository _childRepository;

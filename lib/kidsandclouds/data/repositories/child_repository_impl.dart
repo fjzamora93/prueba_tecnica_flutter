@@ -3,10 +3,11 @@
 import 'package:pruebakidsandclouds/core/helper/log_helper.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/data/models/child.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/data/service/child_api_service.dart';
+import 'package:pruebakidsandclouds/kidsandclouds/domain/repository/child_repository.dart';
 
-class ChildRepository {
+class ChildRepositoryImpl implements ChildRepository {
   final ChildApiService _apiService;
-  ChildRepository(this._apiService);
+  ChildRepositoryImpl(this._apiService);
 
 
   // GET ALL CHILDREN

@@ -2,7 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pruebakidsandclouds/core/di/usecase_module.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/data/models/event.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/data/models/eventCategory.dart';
-import 'package:pruebakidsandclouds/kidsandclouds/domain/event_usecase.dart';
+import 'package:pruebakidsandclouds/kidsandclouds/domain/usecase/event_usecase.dart';
 
 final eventProvider = AsyncNotifierProvider<EventNotifier, List<Event>>(
   EventNotifier.new,

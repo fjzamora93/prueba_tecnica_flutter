@@ -5,7 +5,6 @@ import 'package:pruebakidsandclouds/core/theme/app_colors.dart';
 import 'package:pruebakidsandclouds/core/widgets/bottom_nav_bar.dart';
 import 'package:pruebakidsandclouds/core/helper/responsive_helper.dart';
 import 'package:pruebakidsandclouds/core/widgets/responsive_wrapper.dart';
-import 'package:pruebakidsandclouds/kidsandclouds/presentation/providers/auth_provider.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/presentation/widgets/settings.dart';
 
 class PrimaryScaffold extends StatelessWidget {

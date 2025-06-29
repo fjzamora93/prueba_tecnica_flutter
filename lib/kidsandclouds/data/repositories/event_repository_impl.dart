@@ -3,8 +3,9 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/data/models/event.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/data/models/eventCategory.dart';
+import 'package:pruebakidsandclouds/kidsandclouds/domain/repository/event_repository.dart';
 
-class EventRepository {
+class EventRepositoryImpl implements EventRepository {
   static const String _eventsPath = 'assets/data/events.json';
 
   Future<List<Event>> _loadAllEvents() async {

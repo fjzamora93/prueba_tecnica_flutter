@@ -4,7 +4,7 @@ import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pruebakidsandclouds/core/di/usecase_module.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/data/models/user.dart';
-import 'package:pruebakidsandclouds/kidsandclouds/domain/auth_usecase.dart';
+import 'package:pruebakidsandclouds/kidsandclouds/domain/usecase/auth_usecase.dart';
 
 
 
@@ -42,6 +42,9 @@ class AuthNotifier extends AsyncNotifier<User?> {
     }
   }
 
+ void updateUser(User updatedUser) {
+    state = AsyncValue.data(updatedUser);
+  }
 
   Future<void> _guard(Future<User?> Function() cb) async {
     state = const AsyncLoading();

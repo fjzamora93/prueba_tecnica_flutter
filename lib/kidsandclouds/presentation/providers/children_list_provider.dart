@@ -3,7 +3,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pruebakidsandclouds/core/di/usecase_module.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/data/models/child.dart';
-import 'package:pruebakidsandclouds/kidsandclouds/domain/child_usecase.dart';
+import 'package:pruebakidsandclouds/kidsandclouds/domain/usecase/child_usecase.dart';
 
 final childrenListProvider = AsyncNotifierProvider<ChildrenNotifier, List<Child>>(
   ChildrenNotifier.new,

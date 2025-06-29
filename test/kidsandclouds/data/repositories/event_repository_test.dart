@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:pruebakidsandclouds/kidsandclouds/data/repositories/event_repository.dart';
+import 'package:pruebakidsandclouds/kidsandclouds/data/repositories/event_repository_impl.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -41,7 +41,7 @@ void main() {
 
   // Testamos que se cargan los eventos filtrados
   test('getFilteredEvents devuelve solo los eventos de la categoría solicitada', () async {
-    final repo = EventRepository();
+    final repo = EventRepositoryImpl();
 
     // Filtramos (por ejemplo por alimentación)
     final events = await repo.getFilteredEvents('alimentacion');
@@ -55,7 +55,7 @@ void main() {
 
   // testamos que se devuelven todos los eventos
   test('getEvents devuelve todos los eventos', () async {
-    final repo = EventRepository();
+    final repo = EventRepositoryImpl();
     final events = await repo.getEvents();
     expect(events.length, 2);
   });

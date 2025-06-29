@@ -4,20 +4,20 @@ import 'package:pruebakidsandclouds/core/helper/log_helper.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/data/models/login_request.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/data/models/login_response.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/data/models/user.dart';
+import 'package:pruebakidsandclouds/kidsandclouds/data/repositories/auth_repository.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/data/service/auth_api_service.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/security/token_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 
 
-// TODO:  En un proyecto real, habríamos creado un Interface del cuál este repositorio se implementa. 
-class AuthRepository {
+class AuthRepositoryImpl implements AuthRepository {
   final AuthApiService api;
   final TokenStorage storage;
 
 
 
-  AuthRepository(this.api, this.storage);
+  AuthRepositoryImpl(this.api, this.storage);
 
   Future<User> login(String username, String password) async {
     try {

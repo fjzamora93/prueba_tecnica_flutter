@@ -6,6 +6,7 @@ import 'package:pruebakidsandclouds/core/widgets/custom_subtitle.dart';
 import 'package:pruebakidsandclouds/core/widgets/menu_card.dart';
 import 'package:pruebakidsandclouds/generated/l10n.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/presentation/providers/auth_provider.dart';
+import 'package:pruebakidsandclouds/kidsandclouds/presentation/widgets/edit_user_dialogue.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/presentation/widgets/language_selection_dialog.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/presentation/widgets/profile_card.dart';
 // Asegúrate de importar tus recursos de localización y rutas
@@ -32,7 +33,16 @@ class SettingsContent extends ConsumerWidget {
             const SizedBox(height: 20),
 
             /*────────  CARTA CON DATOS  ────────*/
-            ProfileCard(user: user!, onTap: () {}),
+            ProfileCard(
+              user: user!, 
+              onTap: () {
+                // ✅ Abrir el diálogo de edición de usuario
+                showDialog(
+                  context: context,
+                  builder: (context) => EditUserDialog(user: user),
+                );
+              },
+            ),
 
             const SizedBox(height: 16),
             CustomSubtitle(S.of(context).configuration),
