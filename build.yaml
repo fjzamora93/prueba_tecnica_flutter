@@ -1,9 +1,0 @@
-targets:
-  $default:
-    builders:
-      json_serializable:
-        options:
-          # Creates `toJson()` and `fromJson()` methods
-          explicit_to_json: true
-          # Includes if-null checks in the generated code
-          include_if_null: false
