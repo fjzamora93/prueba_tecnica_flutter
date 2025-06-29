@@ -111,11 +111,15 @@ Para el test visual hemos seleccionado el widget EventCard. Aquí nuevamente moc
 El apk se ha añadido a la raíz del proyecto para evitar cualquier problema relacionado con las dependencias. Es posible instalarlo directamente en un dispositivo móvil (android) o en un emulador de la siguiente manera:
 
 ```
+# Arrancar cualquiera de los emuladores instalados y que esté corriendo, luego ejecutar:
 
-# Arrancar cualquiera de los emuladores instalados, luego ejecutar:
-
-adb install app-release.apk
+adb install ./release/app-release.apk
 adb shell am start -n com.example.pruebakidsandclouds/.MainActivity
+
+
+# Ejecutar directamente para navegador
+cd ./release/web
+python3 -m http.server 8000
 ```
 
 
@@ -141,7 +145,7 @@ password: 'sophiabpass'
 ```
 
 
-#  Instalación
+#  Instalación 
 
 ## Requisitos previos
 
