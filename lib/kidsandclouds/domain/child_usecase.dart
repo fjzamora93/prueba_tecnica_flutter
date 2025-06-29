@@ -11,11 +11,21 @@ class ChildUsecase {
   ChildUsecase(this._childRepository);
 
   // GET ALL CHILDREN
-  Future<List<Child>> getChildren({int results = 10}) async {
+  /**
+   * Aplicamos en el caso de filtro un uso que nos quite todos los casos donde la Id tenga un valor nulo.
+   * DE esta forma nos ahorraremos el probelma de después navegar a un detalle de un niño que no existe.
+   */
+   Future<List<Child>> getChildren({int results = 10}) async {
     final childrenList = await _childRepository.getChildren(results: results);
 
-    // Retorna una lista de Child con la edad reemplazada
-    return childrenList.map((child) {
+    // Filtra los que tengan id.value null o vacío
+    final filteredChildren = childrenList.where((child) {
+      final idValue = child.id['value'];
+      return idValue != null && idValue.toString().trim().isNotEmpty;
+    }).toList();
+
+    // Retorna una lista de Child con edad aleatoria
+    return filteredChildren.map((child) {
       final newAge = _random.nextInt(6); // 0..5
       return Child(
         gender: child.gender,
@@ -39,8 +49,13 @@ class ChildUsecase {
   // GET CHILD BY ID
   Future<Child> getChildById(String id) async {
     final child = await _childRepository.getChildById(id);
-    final newAge = _random.nextInt(6); // 0..5
 
+    final idValue = child.id['value'];
+    if (idValue == null || idValue.toString().trim().isEmpty) {
+      throw Exception('El ID del niño es inválido (nulo o vacío).');
+    }
+
+    final newAge = _random.nextInt(6); // 0..5
     return Child(
       gender: child.gender,
       email: child.email,

@@ -10,13 +10,17 @@ import 'package:pruebakidsandclouds/kidsandclouds/presentation/view/login_screen
 import 'package:pruebakidsandclouds/kidsandclouds/presentation/view/profile_screen.dart';
 
 GoRouter appRouter() => GoRouter(
-  initialLocation: AppRoutes.login,  
+  initialLocation: AppRoutes.login,
+  errorBuilder: (context, state) {
+    // Manejo de errores de navegación
+    return LoginScreen(); // Redirigir a login si hay error
+  },
   
   routes: [
     // AUTENTIFICACIÓN Y HOME
     GoRoute(
       path: AppRoutes.login,
-      builder: (_, __) =>  LoginScreen(),
+      builder: (_, __) => LoginScreen(),
     ),
     GoRoute(
       path: AppRoutes.home,
@@ -35,12 +39,14 @@ GoRouter appRouter() => GoRouter(
       builder: (_, __) => const ProfileScreen(),
     ),
 
-  
- 
     GoRoute(
       path: '${AppRoutes.childDetail}/:id',
       builder: (context, state) {
-        final id = state.pathParameters['id']!;
+        final id = state.pathParameters['id'];
+        if (id == null || id.isEmpty) {
+          // Si no hay ID válido, redirigir a la lista de niños
+          return const ChildrenListScreen();
+        }
         return ChildDetailScreen(childId: id);
       },
     ),

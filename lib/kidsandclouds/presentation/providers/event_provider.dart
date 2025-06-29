@@ -17,6 +17,8 @@ class EventNotifier extends AsyncNotifier<List<Event>> {
 
   @override
   Future<List<Event>> build() async {
+    state = const AsyncValue.loading();
+    await Future.delayed(const Duration(seconds: 1));
     _useCase = ref.read(eventUseCaseProvider);    
     return await _useCase.getEvents();
   }
@@ -25,6 +27,7 @@ class EventNotifier extends AsyncNotifier<List<Event>> {
     state = const AsyncValue.loading();
     try {
       final events = await _useCase.getEvents();
+      await Future.delayed(const Duration(seconds: 1));
       state = AsyncValue.data(events);
     } catch (e) {
       state = AsyncValue.error(e, StackTrace.current);
@@ -35,6 +38,7 @@ class EventNotifier extends AsyncNotifier<List<Event>> {
   Future<void> getFilteredEvents(String category) async {
     try{
       state = const AsyncValue.loading();
+      await Future.delayed(const Duration(seconds: 1));
       final events = await _useCase.getFilteredEvents(category);
       state = AsyncValue.data(events);
     }catch(e){

@@ -1,10 +1,11 @@
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pruebakidsandclouds/core/navigation/app_routes.dart';
 import 'package:pruebakidsandclouds/core/theme/theme.dart';
 import 'package:pruebakidsandclouds/core/helper/responsive_helper.dart';
+import 'package:pruebakidsandclouds/core/widgets/custom_loading_indicator.dart';
+import 'package:pruebakidsandclouds/core/widgets/error_state_widget.dart';
 import 'package:pruebakidsandclouds/generated/l10n.dart';
 import 'package:pruebakidsandclouds/core/widgets/primary_scaffold.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/presentation/providers/children_list_provider.dart';
@@ -40,10 +41,11 @@ class _ChildrenListScreen extends ConsumerState<ChildrenListScreen> {
       ),
       children: [
         childrenListState.when(
-          loading: () => const Center(child: CircularProgressIndicator()),
-          error: (error, _) => Padding(
-            padding: ResponsiveHelper.responsivePadding(context),
-            child: Text(S.of(context).error),
+          loading: () => CustomLoadingIndicator(),
+          error: (error, _) => ErrorStateWidget(
+            errorMessage: S.of(context).error,
+            onRetry: () => ref.read(childrenListProvider.notifier).fetchChildren(),
+            height: 200, 
           ),
           data: (childrenList) => _buildChildrenList(context, childrenList),
         ),
@@ -59,9 +61,7 @@ class _ChildrenListScreen extends ConsumerState<ChildrenListScreen> {
         
         Text(
           '${S.of(context).youHave} ${childrenList.length} ${S.of(context).children} ',
-          style: TextStyle(
-            fontSize: ResponsiveHelper.responsiveValue(context, mobile: 16.0, desktop: 18.0),
-          ),
+          style: AppTextStyles.caption
         ),
         
         SizedBox(height: ResponsiveHelper.responsiveValue(context, mobile: 16.0, desktop: 24.0)),
@@ -72,12 +72,15 @@ class _ChildrenListScreen extends ConsumerState<ChildrenListScreen> {
     );
   }
 
+
+  // WIDGET QUE REPRESENTA EL LISTADO DE NIÑOS
   Widget _buildResponsiveChildrenList(BuildContext context, List childrenList) {
     final isDesktop = ResponsiveHelper.isDesktop(context);
     final gridColumns = ResponsiveHelper.getGridColumns(context);
     
     if (isDesktop && childrenList.length > 1) {
-      // Desktop: Use a grid layout
+
+      // DESKTOP: USAMOS UN GRID LAYOUT
       return GridView.builder(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
@@ -92,37 +95,36 @@ class _ChildrenListScreen extends ConsumerState<ChildrenListScreen> {
           final child = childrenList[index];
           return ChildSummaryCard(
             child: child,
-            onTap: () {
-              context.push('${AppRoutes.childDetail}/${child.idValue}'); 
-            },
+            onTap: () =>   context.push('${AppRoutes.childDetail}/${child.idValue}'),
             summarize: false, 
           );
         },
       );
     } else {
-      // Mobile: Use a list layout with constrained height
+
+      //  MOBILE: USAMOS UN LISTVIEW
       return SizedBox(
-        height: ResponsiveHelper.responsiveValue(context, mobile: 400.0, desktop: 500.0), 
+        height: 400.0, 
         child: ListView.builder(
-          itemCount: childrenList.length,
+          itemCount: childrenList.length, 
           itemBuilder: (context, index) {
             final child = childrenList[index];
             return Padding(
-              padding: EdgeInsets.only(
-                bottom: ResponsiveHelper.responsiveValue(context, mobile: 8.0, desktop: 12.0),
+              padding: const EdgeInsets.only(
+                bottom: 8.0, 
               ),
               child: ChildSummaryCard(
                 child: child,
-                onTap: () {
-                  context.push('${AppRoutes.childDetail}/${child.idValue}'); 
-                },
-                summarize: false, 
+                 onTap: () =>   context.push('${AppRoutes.childDetail}/${child.idValue}'),
+                summarize: false,
               ),
             );
           },
         ),
       );
+
     }
 
   }
+
 }

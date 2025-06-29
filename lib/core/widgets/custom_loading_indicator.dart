@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:pruebakidsandclouds/core/theme/app_colors.dart';
 
 class CustomLoadingIndicator extends StatefulWidget {
@@ -12,7 +11,7 @@ class CustomLoadingIndicator extends StatefulWidget {
     super.key,
     this.size = 40,
     this.strokeWidth = 3,
-    this.color,
+    this.color = AppColors.primary,
     this.message,
   });
 
@@ -45,6 +44,7 @@ class _CustomLoadingIndicatorState extends State<CustomLoadingIndicator>
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
+          SizedBox(height: 30),
           SizedBox(
             width: widget.size,
             height: widget.size,

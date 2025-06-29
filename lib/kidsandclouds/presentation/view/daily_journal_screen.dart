@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:pruebakidsandclouds/core/theme/app_colors.dart';
 import 'package:pruebakidsandclouds/core/theme/theme.dart';
 import 'package:pruebakidsandclouds/core/helper/responsive_helper.dart';
+import 'package:pruebakidsandclouds/core/widgets/custom_loading_indicator.dart';
+import 'package:pruebakidsandclouds/core/widgets/error_state_widget.dart';
 import 'package:pruebakidsandclouds/generated/l10n.dart';
 import 'package:pruebakidsandclouds/core/widgets/primary_scaffold.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/data/models/eventCategory.dart';
@@ -65,45 +67,18 @@ class _DailyJournalScreen extends ConsumerState<DailyJournalScreen> {
         
         // Lista de eventos
         eventsState.when(
-          loading: () => const Center(
-            child: CircularProgressIndicator(),
+          loading: () => CustomLoadingIndicator(),
+          error: (error, stackTrace) => ErrorStateWidget(
+            errorMessage:  S.of(context).error,
+            onRetry: () => ref.read(eventProvider.notifier).fetchEvents(),
+            height: 200, 
           ),
-          error: (error, stackTrace) => _buildErrorState(context),
           data: (events) => _buildEventsList(context, events),
         ),
       ],
     );
   }
 
-  Widget _buildErrorState(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(
-            Icons.error_outline,
-            size: ResponsiveHelper.responsiveValue(context, mobile: 64.0, desktop: 80.0),
-            color: AppColors.error,
-          ),
-          SizedBox(height: ResponsiveHelper.responsiveValue(context, mobile: 16.0, desktop: 20.0)),
-          Text(
-            'Error al cargar eventos',
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-              color: AppColors.error,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          SizedBox(height: ResponsiveHelper.responsiveValue(context, mobile: 16.0, desktop: 20.0)),
-          ElevatedButton(
-            onPressed: () {
-              ref.read(eventProvider.notifier).fetchEvents();
-            },
-            child: const Text('Reintentar'),
-          ),
-        ],
-      ),
-    );
-  }
 
   Widget _buildEventsList(BuildContext context, List events) {
     final isDesktop = ResponsiveHelper.isDesktop(context);
@@ -137,32 +112,16 @@ class _DailyJournalScreen extends ConsumerState<DailyJournalScreen> {
           );
         },
       );
-    } else {
 
-      // Mobile: Usamos una SingleChildScrollView 
+    // Mobile: Usamos una columna y ya (esto es consecuencia del  Mobile first)
+    } else {
       return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
-            // Selector horizontal de categorías
-            SizedBox(height: ResponsiveHelper.responsiveValue(context, mobile: 20.0, desktop: 32.0)),
-            
-            // Lista de eventos
-             ref.watch(eventProvider).when(
-              loading: () => SizedBox(
-                height: 200,
-                child: const Center(child: CircularProgressIndicator()),
-              ),
-              error: (error, stackTrace) => _buildErrorState(context),
-              data: (events) => EventList(eventsState: ref.watch(eventProvider)),
-            ),
+             EventList(eventsState: ref.watch(eventProvider)),
           ],
         );
-     
-
-
-      
-
+    
     }
   }
 }
