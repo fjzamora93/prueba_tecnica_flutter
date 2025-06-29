@@ -2,11 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'dart:math';
 import 'package:pruebakidsandclouds/core/theme/app_colors.dart';
+import 'package:pruebakidsandclouds/core/widgets/custom_loading_indicator.dart';
 import 'package:pruebakidsandclouds/core/widgets/default_card.dart';
+import 'package:pruebakidsandclouds/core/widgets/error_state_widget.dart';
+import 'package:pruebakidsandclouds/generated/l10n.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/data/models/event.dart';
+import 'package:pruebakidsandclouds/kidsandclouds/presentation/providers/event_provider.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/presentation/widgets/event_card.dart';
 
-class EventList extends StatelessWidget {
+class EventList extends ConsumerWidget {
   final AsyncValue<List<Event>> eventsState;
 
   const EventList({
@@ -15,7 +19,7 @@ class EventList extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -45,33 +49,14 @@ class EventList extends StatelessWidget {
         
         // Lista de eventos
         eventsState.when(
-          loading: () => const Center(
-            child: Padding(
-              padding: EdgeInsets.all(32),
-              child: CircularProgressIndicator(),
-            ),
+          loading: () => CustomLoadingIndicator(),
+          
+          error: (error, _) => ErrorStateWidget(
+            errorMessage: S.of(context).error,
+            onRetry: () => ref.read(eventProvider.notifier).fetchEvents(),
+            height: 200, 
           ),
-          error: (error, _) => Padding(
-            padding: const EdgeInsets.all(16),
-            child: DefaultCard(
-              child: Column(
-                children: [
-                  Icon(
-                    Icons.error_outline,
-                    color: AppColors.error,
-                    size: 48,
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    'Error al cargar eventos',
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: AppColors.error,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
+
           data: (events) {
             if (events.isEmpty) {
               return Padding(
@@ -97,8 +82,8 @@ class EventList extends StatelessWidget {
               );
             }
             
-            // Seleccionar 3 eventos aleatorios
-            final randomEvents = _getRandomEvents(events, 3);
+            // Seleccionar 4 eventos aleatorios
+            final randomEvents = _getRandomEvents(events, 4);
             
             return Column(
               children: randomEvents.map((event) => 
@@ -126,7 +111,6 @@ class EventList extends StatelessWidget {
 
   List<Event> _getRandomEvents(List<Event> events, int count) {
     if (events.length <= count) return events;
-    
     final random = Random();
     final shuffled = List<Event>.from(events)..shuffle(random);
     return shuffled.take(count).toList();

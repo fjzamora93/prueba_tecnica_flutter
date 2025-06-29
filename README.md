@@ -48,7 +48,6 @@ Arquitectura base del proyecto (MVVM) separado en:
 
 Para el proyecto se han utilizado las siguientes librerías:
 
-
 - **goRouter:** Para la navegación dentro de la aplicación. 
 - **Riverpod:** Como provider y para el sistema de inyección de dependencias. 
 - **Intl:** Para poder cambiar de idioma. 
@@ -85,10 +84,6 @@ Para el test visual hemos seleccionado el widget EventCard. Aquí nuevamente moc
 - **Flutter 3.16.0 o superior**
 - **Dart 3.2.0 o superior**
 
-### Para desarrollo móvil:
-- **Android Studio** (para Android)
-- **Xcode** (para iOS - solo en macOS)
-
 ### Para desarrollo web:
 - **Google Chrome** (para testing web)
 
@@ -99,7 +94,7 @@ Para el test visual hemos seleccionado el widget EventCard. Aquí nuevamente moc
 flutter doctor
 
 # Clonar repositorio
-git clone [URL_DEL_REPOSITORIO]
+git clone [[URL_DEL_REPOSITORIO](https://github.com/fjzamora93/prueba_tecnica_flutter)]
 cd pruebakidsandclouds
 
 # isntalar dependencias
@@ -115,11 +110,6 @@ dart run build_runner build --delete-conflicting-outputs
 ```bash
 # Ver dispositivos disponibles
 flutter devices
-
-# Ejecutar en dispositivo conectado
-flutter run
-
-# O especificar dispositivo
 flutter run -d [DEVICE_ID]
 
 # Ejecutar en Chrome

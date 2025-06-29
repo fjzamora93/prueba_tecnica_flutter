@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-/// Clase que contiene todos los colores de la aplicación
-/// Organizada por categorías para mejor mantenimiento
+/// Clase que contiene todos los colores de la aplicación (muchos no se van a utilizar, pero está bien tenerlos controlados desde el principio)
 class AppColors {
   AppColors._(); // Constructor privado para evitar instanciación
 
@@ -24,7 +23,7 @@ class AppColors {
   // COLORES DE FONDO
   static const Color backgroundPrimary = Color(0xFFF8F8F8); // Gris muy claro
   static const Color backgroundSecondary = Color(0xFFFAFAFA); // Gris claro
-  static const Color backgroundTertiary = Color.fromARGB(255, 247, 204, 204); // Gris medio
+  static const Color backgroundTertiary = Color.fromARGB(255, 250, 175, 175); // Gris medio
   static const Color backgroundInput = Color.fromARGB(255, 247, 243, 243); // Blanco
 
   // COLORES DE BORDE

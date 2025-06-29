@@ -92,9 +92,9 @@ class _DailyJournalScreen extends ConsumerState<DailyJournalScreen> {
         physics: const NeverScrollableScrollPhysics(),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: gridColumns,
-          crossAxisSpacing: 16,
+          crossAxisSpacing: 8,
           mainAxisSpacing: 16,
-          childAspectRatio: 3.5,
+          mainAxisExtent: 200,
         ),
         itemCount: events.length,
         itemBuilder: (context, index) {

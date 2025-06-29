@@ -89,7 +89,7 @@ class _ChildrenListScreen extends ConsumerState<ChildrenListScreen> {
           crossAxisCount: gridColumns,
           crossAxisSpacing: 16,
           mainAxisSpacing: 16,
-          childAspectRatio: 2.5,
+          mainAxisExtent: 300,
         ),
         itemCount: childrenList.length,
         itemBuilder: (context, index) {
@@ -106,32 +106,26 @@ class _ChildrenListScreen extends ConsumerState<ChildrenListScreen> {
       );
     } else {
 
-      //  MOBILE: USAMOS UN LISTVIEW
-      return SizedBox(
-        height: 400.0, 
-        child: ListView.builder(
-          itemCount: childrenList.length, 
-          itemBuilder: (context, index) {
-            final child = childrenList[index];
+      //  MOBILE: USAMOS UNA COLUMNA (recuerda que nuestro primary Scaffold ya tiene un list view)
+      return Column(
+        children: [
+          ...childrenList.map((child) {
             return Padding(
-              padding: const EdgeInsets.only(
-                bottom: 8.0, 
-              ),
+              padding: const EdgeInsets.only(bottom: 8.0),
               child: ChildSummaryCard(
                 child: child,
-                 onTap: () =>   {
-              ref.read(childDetailProvider.notifier).setChild(child),
-              context.push('${AppRoutes.childDetail}/${child.idValue}')
-              },
+                onTap: () => {
+                  ref.read(childDetailProvider.notifier).setChild(child),
+                  context.push('${AppRoutes.childDetail}/${child.idValue}')
+                },
                 summarize: false,
               ),
             );
-          },
-        ),
+          }).toList(),
+        ],
       );
 
+
     }
-
   }
-
 }
