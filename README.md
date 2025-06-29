@@ -3,7 +3,7 @@
 Una aplicación Flutter responsive para la gestión y seguimiento del cuidado infantil, disponible tanto para dispositivos móviles como para web.
 
 
-## Arquitectura de la aplicación
+# Arquitectura de la aplicación
 
 Arquitectura base del proyecto (MVVM) separado en:
 
@@ -76,7 +76,7 @@ Visualmente, la aplicación se compone de un total de 6 pantallas:
 
 Todas las pantallas se han hecho responsive. La estrategia en este caso ha sido adaptar los widgets a un tipo de pantalla u otra dependiendo del contexto de la aplicación, manteniendo siempre una parte común para cada pantalla (generlamente los títulos y el scaffold principal), y cambiar la "parte variable" (es decir, de qué manera se muestran las listas de items). Más concretamente, se ha apostado por un grid para la versión desktop y por una lista simple para la versión mobile. 
 
-### Pantallas versión móvil
+## Pantallas versión móvil
 
 ![Mobile](./screenshots/mobile_1.png)
 ![Mobile](./screenshots/mobile_2.png)
@@ -86,38 +86,35 @@ Igualmente, se han hecho ciertas mejoras visuales sobre los requerimentos origin
 Otras mejoras incluyen una bottomBar, una appBar (con opción de abrir el drawer) y una navegación completa que permite no solo navegar hacia adelante, sino hacer pop hacia atrás.
 
 
-### Pantallas versión web
+## Pantallas versión web
 
 ![Destkop screenshots](./screenshots/desktop-children.png)
 ![Destkop screenshots](./screenshots/events.png)
 ![Destkop screenshots](./screenshots/splash.png)
 
 
-
-## Tests unitarios (3 tests)
+# Tests unitarios (3 tests)
 
 Para la realización de test unitarios hemos tomado dos referentes:
 - EventRepository.
 - EventCard.
 
-### Test lógico (repository)
+## Test lógico (repository)
 En el caso de EventRepository testamos los dos métodos disponibles (obtener todos los eventos y filtrarlos). Puesto que en el test no podemos acceder directamente a la carpeta assets, mockeamos un JSON desde el setUP. Una vez mockeado, ahora sí que es posible testar que los datos se están recibiendo o filtrando correctamente.  
 
-### Test visual (widget)
+## Test visual (widget)
 Para el test visual hemos seleccionado el widget EventCard. Aquí nuevamente mockeamos un evento que vamos a psar como parámetro al widget y utilizamos pumpWidget para simular la renderización de dicho componente. Acto seguido, comenzamos el test y "recorremos" el widget completo buscando las palabras clave que nos interesa y que deberían estar dentro del evento mockeado anteriormente.
 
 
 # Uso de la aplicación
 
-El apk está generado directamente en la carpeta build/app/outputs/flutter-apk/app-release.apk
-
-Es posible instalarlo directamente en un dispositivo móvil (android) o en un emulador de la siguiente manera:
+El apk se ha añadido a la raíz del proyecto para evitar cualquier problema relacionado con las dependencias. Es posible instalarlo directamente en un dispositivo móvil (android) o en un emulador de la siguiente manera:
 
 ```
 
 # Arrancar cualquiera de los emuladores instalados, luego ejecutar:
 
-adb install build/app/outputs/flutter-apk/app-release.apk
+adb install app-release.apk
 adb shell am start -n com.example.pruebakidsandclouds/.MainActivity
 ```
 
