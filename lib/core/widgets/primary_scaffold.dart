@@ -21,7 +21,7 @@ class PrimaryScaffold extends StatelessWidget {
     this.floatingActionButton,
     this.hideBottonNavigationBar = false,
     this.backgroundColor = AppColors.backgroundInput,
-    this.useResponsiveWrapper = true,
+    this.useResponsiveWrapper = false,
   });
 
   @override

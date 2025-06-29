@@ -6,10 +6,10 @@ import 'package:pruebakidsandclouds/core/widgets/default_card.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/data/models/event.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/presentation/widgets/event_card.dart';
 
-class ChildEventsSection extends StatelessWidget {
+class EventList extends StatelessWidget {
   final AsyncValue<List<Event>> eventsState;
 
-  const ChildEventsSection({
+  const EventList({
     super.key,
     required this.eventsState,
   });

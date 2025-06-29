@@ -10,6 +10,7 @@ import 'package:pruebakidsandclouds/kidsandclouds/data/models/eventCategory.dart
 import 'package:pruebakidsandclouds/kidsandclouds/presentation/providers/event_provider.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/presentation/widgets/category_selector.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/presentation/widgets/event_card.dart';
+import 'package:pruebakidsandclouds/kidsandclouds/presentation/widgets/event_list.dart';
 
 class DailyJournalScreen extends ConsumerStatefulWidget {
   const DailyJournalScreen({super.key});
@@ -109,7 +110,8 @@ class _DailyJournalScreen extends ConsumerState<DailyJournalScreen> {
     final gridColumns = ResponsiveHelper.getGridColumns(context);
     
     if (isDesktop && events.length > 1) {
-      // Desktop: Use a grid layout for better space utilization
+
+      // Desktop: Usamos un Grid Layout
       return GridView.builder(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
@@ -136,27 +138,31 @@ class _DailyJournalScreen extends ConsumerState<DailyJournalScreen> {
         },
       );
     } else {
-      // Mobile: Use a column layout
+
+      // Mobile: Usamos una SingleChildScrollView 
       return Column(
-        children: events.map<Widget>((event) => 
-          Padding(
-            padding: EdgeInsets.only(
-              bottom: ResponsiveHelper.responsiveValue(context, mobile: 12.0, desktop: 16.0),
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+
+            // Selector horizontal de categorías
+            SizedBox(height: ResponsiveHelper.responsiveValue(context, mobile: 20.0, desktop: 32.0)),
+            
+            // Lista de eventos
+             ref.watch(eventProvider).when(
+              loading: () => SizedBox(
+                height: 200,
+                child: const Center(child: CircularProgressIndicator()),
+              ),
+              error: (error, stackTrace) => _buildErrorState(context),
+              data: (events) => EventList(eventsState: ref.watch(eventProvider)),
             ),
-            child: EventCard(
-              event: event,
-              onTap: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text('Evento: ${event.displayTitle}'),
-                    duration: const Duration(seconds: 2),
-                  ),
-                );
-              },
-            ),
-          )
-        ).toList(),
-      );
+          ],
+        );
+     
+
+
+      
+
     }
   }
 }

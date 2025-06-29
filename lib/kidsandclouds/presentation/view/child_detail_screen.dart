@@ -12,7 +12,7 @@ import 'package:pruebakidsandclouds/kidsandclouds/presentation/providers/childre
 import 'package:pruebakidsandclouds/kidsandclouds/presentation/providers/event_provider.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/presentation/widgets/child_header.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/presentation/widgets/child_info_card.dart';
-import 'package:pruebakidsandclouds/kidsandclouds/presentation/widgets/child_events_section.dart';
+import 'package:pruebakidsandclouds/kidsandclouds/presentation/widgets/event_list.dart';
 
 class ChildDetailScreen extends ConsumerStatefulWidget {
   final String childId;
@@ -98,7 +98,7 @@ class _ChildDetailScreen extends ConsumerState<ChildDetailScreen> {
         SizedBox(height: ResponsiveHelper.responsiveValue(context, mobile: 24.0, desktop: 32.0)),
         ChildInfoCard(child: child),
         SizedBox(height: ResponsiveHelper.responsiveValue(context, mobile: 32.0, desktop: 40.0)),
-        ChildEventsSection(eventsState: eventsState),
+        EventList(eventsState: eventsState),
       ],
     );
   }
@@ -125,7 +125,7 @@ class _ChildDetailScreen extends ConsumerState<ChildDetailScreen> {
             const SizedBox(width: 32),
             Expanded(
               flex: 2,
-              child: ChildEventsSection(eventsState: eventsState),
+              child: EventList(eventsState: eventsState),
             ),
           ],
         ),
