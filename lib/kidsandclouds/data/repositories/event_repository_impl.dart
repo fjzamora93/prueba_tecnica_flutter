@@ -18,10 +18,12 @@ class EventRepositoryImpl implements EventRepository {
     }
   }
 
+  @override
   Future<List<Event>> getEvents() async {
     return await _loadAllEvents();
   }
 
+  @override
   Future<List<Event>> getFilteredEvents(String category) async {
     final allEvents = await _loadAllEvents();
     final categoryEnum = EventCategory.fromString(category);

@@ -4,8 +4,8 @@ import 'package:pruebakidsandclouds/core/helper/log_helper.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/data/models/login_request.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/data/models/login_response.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/data/models/user.dart';
-import 'package:pruebakidsandclouds/kidsandclouds/data/repositories/auth_repository.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/data/service/auth_api_service.dart';
+import 'package:pruebakidsandclouds/kidsandclouds/domain/repository/auth_repository.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/security/token_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -19,6 +19,7 @@ class AuthRepositoryImpl implements AuthRepository {
 
   AuthRepositoryImpl(this.api, this.storage);
 
+  @override
   Future<User> login(String username, String password) async {
     try {
       final loginRequest = LoginRequest(username: username, password: password);
@@ -41,10 +42,9 @@ class AuthRepositoryImpl implements AuthRepository {
     }
   }
 
-
+  @override
   Future<User> me() async {
     try {
-      final prefs = await SharedPreferences.getInstance();
       final LoginResponse response = await api.me();
       User user = User.fromLoginResponse(response);
       return user;
@@ -54,6 +54,7 @@ class AuthRepositoryImpl implements AuthRepository {
     }
   }
 
+  @override
   Future<void> logout() async {
     try {
       await storage.clearTokens();

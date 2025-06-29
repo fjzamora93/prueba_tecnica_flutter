@@ -10,7 +10,7 @@ class ChildRepositoryImpl implements ChildRepository {
   ChildRepositoryImpl(this._apiService);
 
 
-  // GET ALL CHILDREN
+    @override
   Future<List<Child>> getChildren({int results = 10}) async {
       try {
         final response = await _apiService.getChildren(results: results);
@@ -22,6 +22,7 @@ class ChildRepositoryImpl implements ChildRepository {
       }
   }
 
+  @override
   Future<Child> getChildById(String id) async {
     try {
       final response = await _apiService.getChildById(id);

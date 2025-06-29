@@ -3,10 +3,10 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pruebakidsandclouds/core/di/api_service_module.dart';
 import 'package:pruebakidsandclouds/core/di/network_module.dart';
-import 'package:pruebakidsandclouds/kidsandclouds/data/repositories/auth_repository.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/data/repositories/auth_repository_impl.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/data/repositories/child_repository_impl.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/data/repositories/event_repository_impl.dart';
+import 'package:pruebakidsandclouds/kidsandclouds/domain/repository/auth_repository.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/domain/repository/child_repository.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/domain/repository/event_repository.dart';
 

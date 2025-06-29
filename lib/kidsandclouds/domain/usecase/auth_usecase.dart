@@ -1,6 +1,6 @@
 
 import 'package:pruebakidsandclouds/kidsandclouds/data/models/user.dart';
-import 'package:pruebakidsandclouds/kidsandclouds/data/repositories/auth_repository.dart';
+import 'package:pruebakidsandclouds/kidsandclouds/domain/repository/auth_repository.dart';
 
 class AuthUseCase {
   final AuthRepository repository;

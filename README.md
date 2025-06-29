@@ -11,30 +11,37 @@ Arquitectura base del proyecto (MVVM) separado en:
 - **core:** para los elementos comunes de toda la aplicación.
 - **feature:** En este tenemos una feature única llamada kidsandclouds. Aunque en un proyecto de mayor tamaño podríamos haber creado varias features (por ejemplo: auth, kids, journal...).
 
+
 ```
 /lib
 ├── core/
 │   ├── theme/
 │   ├── helper/
 │   ├── navigation/
-│   ├── providers/
-│   ├── theme/
 │   ├── widgets/
-│   └── di/           	    # inyección de dependencias (para tener más limpio el código)
+│   └── di/
 ├── kidsandclouds/
-│   ├── models/        
-│   ├── services/             
-│   └── repositories/ 
-├── domain/
-│   └── usecases/           # Lógica de negocio
-├── presentation/
-│   ├── providers/          # Riverpod providers
-│   ├── view/               # Pantallas
-│   └── widgets/            # Componentes reutilizables
+│   ├── data/
+│   │   ├── models/
+│   │   ├── services/
+│   │   └── repositories/
+│   ├── domain/
+│   │   ├── repositories/
+│   │   └── usecases/
+│   └── presentation/
+│       ├── providers/
+│       ├── screens/
+│       └── widgets/
+├── generated/
+│   └── l10n.dart
 └── main.dart
 ```
 
-En este caso, la capa de "useCase" es prescindible, ya que al tener datos mockeados no hay mucha lógica de negocio que aplicar. Aún así, la hemos utilizado para convertir los datos que llegan de la Api a algo que cuadre con la aplicación (por ejemplo, convertir la edad a un número entre 1 y 5).
+
+
+- **data**: Representa nuestra estructura de datos y la conexión a la API. En este caso, y siguiendo las convenciones de Flutter, Kotlin y desarrollo para mobile, utilizamos la capa de 'services' para lanzar las peticiones de https. Mientras que usamos los repositories para la obtención de datos (por ejemplo, en nuestro caso hay datos que obtenemos de ficheros json).
+- **domain**: En este caso puede estar añadiendo una capa de complejidad innecesaria a la arquitectura, ya que apenas hay reglas de uso en la aplicación (aunque se aplican en un par de ocasiones para filtrar los datos). Por su parte, utilizamos interfaces para los repositories y así asegurarnos de que en cualquier momento nuestros casos de uso pueden cambiar la fuente de datos sin comprometer el funcionamiento de la aplicación.
+- **presentation**: capa visual, con las pantallas (screens), componentes reutilizables (widgets) y gestores de estado (provider).
 
 
 ## Librerías utilizadas
@@ -85,7 +92,7 @@ Para el test visual hemos seleccionado el widget EventCard. Aquí nuevamente moc
 ### Para desarrollo web:
 - **Google Chrome** (para testing web)
 
-## 🚀 Instalación
+##  Instalación
 
 ### 1. Verificar instalación de Flutter
 ```bash
