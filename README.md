@@ -119,8 +119,15 @@ adb shell am start -n com.example.pruebakidsandclouds/.MainActivity
 
 # Ejecutar directamente para navegador
 cd ./release/web
-python3 -m http.server 3000
+python3 -m http.server 8000
+
+# Acceder directamente al puerto desde el navegador:
+# http://localhost:8000
 ```
+
+**NOTA**
+Acceder directamene al puerto http://0.0.0.0:8000/ puede provocar fallos en Chrome. Acceder siempre desde localhost para evitar conflictos.
+
 
 
 ## Login
