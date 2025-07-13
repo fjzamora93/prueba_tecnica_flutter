@@ -67,4 +67,17 @@ class User {
       'image': image,
     };
   }
+
+
+  static User createDefaultUser() {
+    return User(
+      id: 0,
+      username: 'Javier',
+      email: 'javier@test.com',
+      firstName: 'Usuario',
+      lastName: 'Invitado',
+      gender: 'male',
+      image: 'https://ui-avatars.com/api/?name=Usuario+Invitado&background=random',
+    );
+  }
 }

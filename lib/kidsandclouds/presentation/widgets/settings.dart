@@ -5,6 +5,7 @@ import 'package:pruebakidsandclouds/core/navigation/app_routes.dart';
 import 'package:pruebakidsandclouds/core/widgets/custom_subtitle.dart';
 import 'package:pruebakidsandclouds/core/widgets/menu_card.dart';
 import 'package:pruebakidsandclouds/generated/l10n.dart';
+import 'package:pruebakidsandclouds/kidsandclouds/data/models/user.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/presentation/providers/auth_provider.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/presentation/widgets/edit_user_dialogue.dart';
 import 'package:pruebakidsandclouds/kidsandclouds/presentation/widgets/language_selection_dialog.dart';
@@ -12,7 +13,10 @@ import 'package:pruebakidsandclouds/kidsandclouds/presentation/widgets/profile_c
 // Asegúrate de importar tus recursos de localización y rutas
 
 class SettingsContent extends ConsumerWidget {
-  const SettingsContent({super.key});
+  SettingsContent({super.key});
+
+  final User defaultUser = User.createDefaultUser();
+
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -34,12 +38,12 @@ class SettingsContent extends ConsumerWidget {
 
             /*────────  CARTA CON DATOS  ────────*/
             ProfileCard(
-              user: user!, 
+              user: user ?? defaultUser, 
               onTap: () {
                 // ✅ Abrir el diálogo de edición de usuario
                 showDialog(
                   context: context,
-                  builder: (context) => EditUserDialog(user: user),
+                  builder: (context) => EditUserDialog(user: user ?? defaultUser),
                 );
               },
             ),

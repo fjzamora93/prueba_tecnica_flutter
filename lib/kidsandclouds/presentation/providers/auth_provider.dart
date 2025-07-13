@@ -51,4 +51,7 @@ class AuthNotifier extends AsyncNotifier<User?> {
     state = await AsyncValue.guard(cb);          
   }
 
+
+
+
 }

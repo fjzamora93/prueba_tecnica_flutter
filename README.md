@@ -119,7 +119,7 @@ adb shell am start -n com.example.pruebakidsandclouds/.MainActivity
 
 # Ejecutar directamente para navegador
 cd ./release/web
-python3 -m http.server 8000
+python3 -m http.server 3000
 ```
 
 
