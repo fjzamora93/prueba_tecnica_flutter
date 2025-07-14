@@ -1,6 +1,6 @@
-# Prueba Técnica Kids & Clouds
+# Template Flutter Repository
 
-Una aplicación Flutter responsive para la gestión y seguimiento del cuidado infantil, disponible tanto para dispositivos móviles como para web.
+Una aplicación Flutter responsive con datos mockeados, disponible tanto para dispositivos móviles como para web.
 
 
 # Arquitectura de la aplicación
